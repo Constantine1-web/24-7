@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, ChevronLeft, ChevronRight, Flame } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Flame, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { MENU_ITEMS } from '@/data/menuData';
 import { MenuItem } from '@/types';
 
 export default function SnackCarousel() {
-  const { addToCart, setIsCartOpen } = useCart();
+  const { addToCart } = useCart();
   
-  // Filter quick bites / snacks catalog
+  // Filter quick bites & snacks list
   const snacksList = MENU_ITEMS.filter(
     (item) => item.category === 'burgers' || item.category === 'snacks' || item.category === 'drinks'
   );
@@ -25,7 +25,7 @@ export default function SnackCarousel() {
     if (isPaused) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % snacksList.length);
-    }, 2400);
+    }, 2600);
     return () => clearInterval(interval);
   }, [isPaused, snacksList.length]);
 
@@ -37,9 +37,7 @@ export default function SnackCarousel() {
     setActiveIndex((prev) => (prev - 1 + snacksList.length) % snacksList.length);
   };
 
-  const currentProduct = snacksList[activeIndex];
-
-  const handleQuickAdd = (product: MenuItem) => {
+  const handleAddActive = (product: MenuItem) => {
     addToCart(product, 1);
     setAddedToast(`Added ${product.name} to cart!`);
     setTimeout(() => setAddedToast(null), 2000);
@@ -48,41 +46,41 @@ export default function SnackCarousel() {
   return (
     <section
       id="snack-carousel"
-      className="py-16 md:py-24 bg-brand-parchment text-brand-darkBrown relative overflow-hidden border-t border-b border-brand-parchmentDark"
+      className="py-16 md:py-24 bg-[#FDF8F2] text-[#0F2C21] relative overflow-hidden border-t border-b border-gray-200/60"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
     >
-      {/* Low contrast topographic line pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#14382B_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
+      {/* Background Circular Peach Blob matching Image 1 */}
+      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] sm:w-[540px] sm:h-[540px] bg-[#FCE6D5] rounded-full filter blur-2xl pointer-events-none opacity-80" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header matching Image 1 */}
         <div className="text-center max-w-xl mx-auto mb-10">
-          <div className="inline-flex items-center space-x-2 bg-brand-orange/15 text-brand-orange px-3.5 py-1 rounded-full text-xs font-extrabold tracking-widest uppercase">
+          <div className="inline-flex items-center space-x-2 bg-[#FCE3CF] text-[#E85D04] px-4 py-1.5 rounded-full text-xs font-extrabold tracking-widest uppercase mb-3">
             <Flame size={14} />
             <span>GRAB A BITE</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-brand-darkGreen mt-3">
+          <h2 className="font-display text-4xl sm:text-6xl uppercase tracking-tight text-[#3D1E12] leading-none">
             SIGNATURE SNACK ATTACK
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base mt-1">
+          <p className="text-gray-600 text-xs sm:text-sm mt-2 font-medium">
             Swipe or let the lineup auto-scroll to pick your quick craving.
           </p>
         </div>
 
-        {/* Carousel Visual Area */}
-        <div className="relative flex justify-center items-center h-[340px] sm:h-[400px]">
+        {/* Carousel Visual Area matching Image 1 */}
+        <div className="relative flex justify-center items-center h-[380px] sm:h-[450px]">
           
           {/* Navigation Arrow Left */}
           <button
             onClick={handlePrev}
             aria-label="Previous Snack"
-            className="absolute left-2 sm:left-12 z-30 bg-white/90 hover:bg-brand-orange text-brand-darkGreen hover:text-white p-3 rounded-full shadow-lg transition-colors border border-gray-200"
+            className="absolute left-2 sm:left-10 z-30 bg-white/90 hover:bg-[#E85D04] text-[#3D1E12] hover:text-white p-3 rounded-full shadow-lg transition-colors border border-gray-200"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={22} />
           </button>
 
           {/* Cards Display Container */}
@@ -91,7 +89,6 @@ export default function SnackCarousel() {
               // Calculate relative offset from active card
               let offset = index - activeIndex;
 
-              // Handle wrap-around math for smooth loop
               if (offset < -Math.floor(snacksList.length / 2)) {
                 offset += snacksList.length;
               } else if (offset > Math.floor(snacksList.length / 2)) {
@@ -101,75 +98,109 @@ export default function SnackCarousel() {
               const isActive = offset === 0;
               const isAdjacent = Math.abs(offset) === 1;
 
-              // Card animation properties based on offset position
-              let xPosition = offset * 260; // Desktop horizontal gap
+              // Card spacing math
+              let xPosition = offset * 250;
               if (typeof window !== 'undefined' && window.innerWidth < 640) {
-                xPosition = offset * 180; // Mobile gap
+                xPosition = offset * 170;
               }
 
-              const scale = isActive ? 1.05 : isAdjacent ? 0.85 : 0.7;
-              const opacity = isActive ? 1 : isAdjacent ? 0.55 : 0.2;
+              const scale = isActive ? 1.1 : isAdjacent ? 0.88 : 0.72;
+              const opacity = isActive ? 1 : isAdjacent ? 0.75 : 0.3;
               const zIndex = isActive ? 20 : isAdjacent ? 10 : 0;
-              const rotateY = offset * -12; // Subtle 3D perspective rotation
+              const yPosition = isActive ? 15 : 0; // Active card elevated & offset down
 
               return (
                 <motion.div
                   key={product.id}
                   animate={{
                     x: xPosition,
+                    y: yPosition,
                     scale,
                     opacity,
-                    rotateY,
                   }}
                   transition={{
                     type: 'spring',
-                    stiffness: 180,
+                    stiffness: 190,
                     damping: 22,
                     mass: 0.8,
                   }}
                   onClick={() => setActiveIndex(index)}
                   style={{ zIndex }}
-                  className={`absolute w-[210px] sm:w-[270px] h-[280px] sm:h-[340px] rounded-3xl p-5 shadow-2xl flex flex-col justify-between cursor-pointer border-2 transition-colors ${
+                  className={`absolute w-[210px] sm:w-[250px] h-[300px] sm:h-[370px] rounded-[28px] p-5 shadow-xl flex flex-col justify-between cursor-pointer border transition-colors ${
                     isActive
-                      ? 'bg-brand-darkBrown border-brand-yellow shadow-card-elevated text-white'
-                      : 'bg-[#3D2C22] border-transparent text-gray-300 hover:opacity-80'
+                      ? 'bg-[#E85D04] text-white border-[#E85D04] shadow-2xl'
+                      : 'bg-[#F4DDCB] text-[#3D1E12] border-transparent hover:bg-[#EED4C0]'
                   }`}
                 >
-                  {/* Card Header Title */}
-                  <div className="text-center">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-yellow">
-                      {product.category}
-                    </span>
-                    <h3 className="font-display text-lg sm:text-xl uppercase tracking-tight leading-tight mt-0.5 line-clamp-1">
-                      {product.name}
-                    </h3>
-                  </div>
-
-                  {/* Centered Product Photo */}
-                  <div className="relative w-full h-[150px] sm:h-[180px] my-2">
+                  {/* Top Centered Isolated Image */}
+                  <div className="relative w-full h-[120px] sm:h-[150px] mt-1 flex justify-center items-center">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-contain transform hover:scale-105 transition-transform duration-300"
+                      className="object-contain filter drop-shadow-md transform hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 
-                  {/* Price Tag & Active Indicator */}
-                  <div className="flex justify-between items-center pt-2 border-t border-white/10">
-                    <span className="font-extrabold text-sm sm:text-base text-brand-yellow">
-                      ₦{product.price.toLocaleString()}
+                  {/* Card Title & Category matching Image 1 */}
+                  <div className="text-center my-1 space-y-0.5">
+                    <span
+                      className={`text-[10px] font-extrabold uppercase tracking-widest ${
+                        isActive ? 'text-white/80' : 'text-[#8A4F39]'
+                      }`}
+                    >
+                      {product.category}
                     </span>
-                    {isActive ? (
-                      <span className="text-[10px] font-bold bg-brand-orange text-white px-2 py-0.5 rounded-full uppercase">
-                        ACTIVE
-                      </span>
-                    ) : (
-                      <span className="text-[10px] font-semibold text-gray-400">
-                        TAP TO VIEW
-                      </span>
-                    )}
+                    <h3
+                      className={`font-display text-lg sm:text-xl uppercase tracking-tight leading-none line-clamp-1 ${
+                        isActive ? 'text-white' : 'text-[#3D1E12]'
+                      }`}
+                    >
+                      {product.name}
+                    </h3>
                   </div>
+
+                  {/* Nutrition Specs / Price Metadata matching Image 1 */}
+                  <div className="text-[10px] space-y-0.5 px-2 py-1.5 rounded-xl bg-black/5">
+                    <div className="flex justify-between font-semibold">
+                      <span className={isActive ? 'text-white/90' : 'text-[#6D4233]'}>Calories</span>
+                      <span className={isActive ? 'text-white font-bold' : 'text-[#3D1E12] font-bold'}>
+                        {product.calories || '450 kcal'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between font-semibold">
+                      <span className={isActive ? 'text-white/90' : 'text-[#6D4233]'}>Prep Time</span>
+                      <span className={isActive ? 'text-white font-bold' : 'text-[#3D1E12] font-bold'}>
+                        {product.prepTime}
+                      </span>
+                    </div>
+                    <div className="flex justify-between font-extrabold text-xs pt-1 border-t border-black/10">
+                      <span className={isActive ? 'text-white' : 'text-[#3D1E12]'}>Price</span>
+                      <span className={isActive ? 'text-white' : 'text-[#E85D04]'}>
+                        ₦{product.price.toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Active Card In-Card Button matching Image 1 */}
+                  {isActive ? (
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddActive(product);
+                      }}
+                      className="w-full bg-[#7A1C00] hover:bg-[#5C1400] text-white py-2.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider shadow-md flex items-center justify-center space-x-1"
+                    >
+                      <ShoppingBag size={14} />
+                      <span>ADD TO CART</span>
+                    </motion.button>
+                  ) : (
+                    <div className="text-center text-[10px] font-bold text-[#8A4F39] uppercase py-1">
+                      TAP TO SELECT
+                    </div>
+                  )}
                 </motion.div>
               );
             })}
@@ -179,48 +210,11 @@ export default function SnackCarousel() {
           <button
             onClick={handleNext}
             aria-label="Next Snack"
-            className="absolute right-2 sm:right-12 z-30 bg-white/90 hover:bg-brand-orange text-brand-darkGreen hover:text-white p-3 rounded-full shadow-lg transition-colors border border-gray-200"
+            className="absolute right-2 sm:right-10 z-30 bg-white/90 hover:bg-[#E85D04] text-[#3D1E12] hover:text-white p-3 rounded-full shadow-lg transition-colors border border-gray-200"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={22} />
           </button>
         </div>
-
-        {/* Active Product Details & Quick Add Controller */}
-        <AnimatePresence mode="wait">
-          {currentProduct && (
-            <motion.div
-              key={currentProduct.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className="mt-8 bg-brand-creamCard max-w-xl mx-auto p-6 rounded-3xl border border-brand-parchmentDark shadow-brand text-center"
-            >
-              <h3 className="font-display text-2xl uppercase tracking-tight text-brand-darkGreen">
-                {currentProduct.name}
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2">
-                {currentProduct.description}
-              </p>
-
-              <div className="flex items-center justify-center space-x-6 mt-4">
-                <span className="font-extrabold text-2xl text-brand-orange">
-                  ₦{currentProduct.price.toLocaleString()}
-                </span>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleQuickAdd(currentProduct)}
-                  className="bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3 rounded-2xl font-extrabold text-sm flex items-center space-x-2 shadow-orange-glow transition-all"
-                >
-                  <ShoppingBag size={18} />
-                  <span>ADD TO CART</span>
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Added Toast Notification */}
         <AnimatePresence>
@@ -229,7 +223,7 @@ export default function SnackCarousel() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 bg-emerald-600 text-white px-6 py-3 rounded-full shadow-2xl font-bold text-sm flex items-center space-x-2 border-2 border-white"
+              className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 bg-emerald-600 text-white px-6 py-3 rounded-full shadow-2xl font-bold text-xs uppercase flex items-center space-x-2 border-2 border-white"
             >
               <span>{addedToast}</span>
             </motion.div>
