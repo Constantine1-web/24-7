@@ -61,64 +61,22 @@ export default function HeroSection() {
 
         </div>
 
-        {/* Right Promo Graphics Column: 3D 30% OFF Badge + Burger, Fries & Soda Composite */}
+        {/* Right Promo Graphics Column: User-Uploaded Exact Promo Image */}
         <div className="lg:col-span-6 relative flex items-center justify-center pt-6 lg:pt-0">
-          
-          {/* 3D "30% OFF" Text Badge matching image 100% */}
-          <div className="absolute -top-6 -left-2 sm:left-4 z-20 pointer-events-none select-none">
-            <div className="relative">
-              
-              {/* Yellow Spark Rays behind 30% OFF */}
-              <div className="absolute -left-6 -top-4 w-16 h-16 pointer-events-none">
-                <svg viewBox="0 0 100 100" className="w-full h-full fill-[#FFC700]">
-                  <polygon points="50,0 60,35 95,20 70,50 100,70 65,75 75,100 45,80 25,100 30,65 0,50 35,40" />
-                </svg>
-              </div>
-
-              {/* Red Accent Splash Triangles */}
-              <div className="absolute -right-8 top-2 w-8 h-8 pointer-events-none">
-                <svg viewBox="0 0 50 50" className="w-full h-full fill-[#D00000]">
-                  <polygon points="0,0 50,20 20,50" />
-                </svg>
-              </div>
-
-              {/* Layered 3D "30% OFF" Text */}
-              <div className="relative font-black italic tracking-tighter leading-none text-center">
-                
-                {/* 30% line with red 3D extrusion effect */}
-                <div className="relative text-[68px] sm:text-[96px] text-[#FFCC00] filter drop-shadow-[0_8px_0_#B80000]">
-                  <span className="relative z-10" style={{
-                    WebkitTextStroke: '3px #900000',
-                    textShadow: '3px 3px 0 #900000, 6px 6px 0 #B80000, 9px 9px 0 #800000'
-                  }}>
-                    30%
-                  </span>
-                </div>
-
-                {/* OFF line with white fill and red 3D extrusion */}
-                <div className="relative text-[48px] sm:text-[68px] text-white uppercase not-italic -mt-4 sm:-mt-7"
-                     style={{
-                       WebkitTextStroke: '3px #900000',
-                       textShadow: '3px 3px 0 #900000, 6px 6px 0 #B80000, 8px 8px 0 #800000'
-                     }}>
-                  OFF
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          {/* High-Resolution Burger, Fries & Iced Drink Composite Image */}
-          <div className="relative w-full max-w-[560px] h-[360px] sm:h-[450px]">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative w-full max-w-[580px] h-[380px] sm:h-[480px]"
+          >
             <Image
-              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80"
+              src="/images/hero-promo.png"
               alt="30% off burger, fries and cold iced drink promotion"
               fill
               priority
               className="object-contain filter drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
             />
-          </div>
-
+          </motion.div>
         </div>
 
       </section>
