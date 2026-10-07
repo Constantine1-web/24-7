@@ -1,0 +1,25 @@
+{
+  "name": "24/7 Flavours - Uyo Restaurant",
+  "short_name": "24/7 Flavours",
+  "description": "Premium fast-casual urban food and lifestyle ordering app in Uyo, Nigeria.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7EE",
+  "theme_color": "#14382B",
+  "orientation": "portrait",
+  "categories": ["food", "lifestyle", "shopping"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
