@@ -37,7 +37,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Hero Art Promo Graphic with Mix-Blend Mode */}
+        {/* Right Hero Art Promo Graphic - User Uploaded Asset */}
         <div className="hero-art" aria-label="30 percent off burger, fries and drink promotion">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
@@ -50,7 +50,7 @@ export default function HeroSection() {
               alt="30% off meal deal with a burger, fries and iced drink"
               fill
               priority
-              className="object-contain mix-blend-multiply filter drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
+              className="object-contain filter drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
             />
           </motion.div>
         </div>
