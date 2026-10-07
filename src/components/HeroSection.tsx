@@ -4,151 +4,115 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, Bike, Users } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-[#FDF8F2] text-brand-darkGreen overflow-hidden pt-6 pb-12 md:pt-10 md:pb-16 border-b border-brand-parchmentDark/50">
+    <div className="w-full">
       
-      {/* Light background subtle pattern watermark */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#14382B_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Main Hero Grid */}
+      <section className="hero grid grid-cols-1 lg:grid-cols-[minmax(0,0.99fr)_minmax(0,1.01fr)] items-center gap-[clamp(30px,5.2vw,78px)] min-h-[min(70vw,688px)] py-8 md:py-12" aria-labelledby="hero-title">
         
-        {/* Main Grid: Left Copy & Right Burger/Fries/Drink Graphic */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center">
-          
-          {/* Left Column Text */}
-          <div className="lg:col-span-6 space-y-6 text-left">
-            
-            {/* Top Pill Badge */}
-            <div className="inline-block">
-              <span className="bg-[#FCE3CF] text-[#E85D04] px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider uppercase inline-flex items-center space-x-2">
-                <span className="w-2 h-2 rounded-full bg-[#E85D04]" />
-                <span>UYO'S #1 FAST-CASUAL SPOT</span>
-              </span>
-            </div>
+        {/* Left Copy */}
+        <div className="hero-copy min-w-0 pt-1">
+          {/* Eyebrow Badge */}
+          <p className="eyebrow inline-flex items-center min-h-[35px] mb-6 px-4 rounded-full bg-[#ffbd3e] text-[#062d26] text-[11px] font-[850] tracking-[1.15px] uppercase">
+            UYO’S #1 FAST-CASUAL SPOT
+          </p>
 
-            {/* Huge Headline matching Image 3 */}
-            <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl tracking-tight leading-[1.02] text-[#0F2C21]">
-              Cravings don't <br />
-              clock out. <br />
-              <span className="text-[#E85D04]">Neither do we.</span>
-            </h1>
+          {/* Headline matching user HTML */}
+          <h1 id="hero-title" className="max-w-[690px] m-0 text-[clamp(44px,5.15vw,76px)] leading-[0.99] tracking-[-3.8px] font-[900] text-[#062d26]">
+            <span className="block">Cravings don’t</span>
+            <span className="block">clock out.</span>
+            <span className="block accent text-[#bd3c0d]">Neither do we.</span>
+          </h1>
 
-            {/* Subtitle Description */}
-            <p className="text-base sm:text-lg text-gray-700 max-w-xl font-normal leading-relaxed">
-              Juicy smash burgers, fiery Suya wings, proper Parfait, and ice-cold Zobo fizz. Made fresh daily at 23 Ikpa Road, Uyo—and at your door in 30 minutes.
-            </p>
+          {/* Hero Description */}
+          <p className="hero-description max-w-[590px] mt-6 color-[#303c38] text-[clamp(14px,1.28vw,17px)] leading-[1.58] tracking-[-0.12px]">
+            Juicy smash burgers, fiery Suya wings, proper Parfait and ice-cold Zobo fizz. Made fresh daily at 23 Ikpa Road, Uyo—and at your door in 30 minutes.
+          </p>
 
-            {/* CTAs matching Image 3 */}
-            <div className="flex items-center space-x-4 pt-2">
-              <Link href="/menu">
-                <motion.button
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="bg-[#E85D04] hover:bg-[#DC5200] text-white px-7 py-3.5 rounded-2xl font-bold text-base shadow-orange-glow flex items-center space-x-2 transition-all"
-                >
-                  <span>Order now</span>
-                  <ArrowRight size={18} />
-                </motion.button>
-              </Link>
+          {/* Hero Action Buttons */}
+          <div className="hero-actions flex flex-wrap items-center gap-4 mt-7">
+            <Link className="button button-primary min-h-[58px] inline-flex items-center justify-center gap-3 px-7 rounded-[13px] border-[1.5px] border-[#bd3c0d] bg-[#bd3c0d] text-white text-[15px] font-[800] shadow-sm hover:-translate-y-0.5 hover:bg-[#a93209] transition-all" href="/menu">
+              <span>Order now</span>
+              <span className="arrow text-[21px] leading-none" aria-hidden="true">→</span>
+            </Link>
 
-              <a href="#snack-carousel">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-white border-2 border-[#0F2C21] text-[#0F2C21] hover:bg-gray-50 px-7 py-3.5 rounded-2xl font-bold text-base transition-colors"
-                >
-                  Quick bites
-                </motion.button>
-              </a>
-            </div>
-
-          </div>
-
-          {/* Right Column: 30% OFF 3D Badge + Burger/Fries/Cola Photo */}
-          <div className="lg:col-span-6 relative flex items-center justify-center pt-4 lg:pt-0">
-            
-            {/* 3D "30% OFF" Badge graphic matching Image 3 */}
-            <motion.div
-              initial={{ scale: 0.8, rotate: -5 }}
-              animate={{ scale: [0.95, 1.05, 0.95], rotate: [-4, -6, -4] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-4 left-4 sm:left-10 z-20 pointer-events-none drop-shadow-2xl"
-            >
-              <div className="relative font-display text-5xl sm:text-7xl leading-none text-[#FFD000] italic font-black select-none tracking-tighter"
-                   style={{
-                     WebkitTextStroke: '2px #CC0000',
-                     textShadow: '4px 4px 0px #CC0000, 7px 7px 0px #880000'
-                   }}>
-                30%
-                <div className="text-3xl sm:text-5xl -mt-2 uppercase not-italic text-white"
-                     style={{
-                       WebkitTextStroke: '2px #CC0000',
-                       textShadow: '3px 3px 0px #CC0000, 5px 5px 0px #880000'
-                     }}>
-                  OFF
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Oversized Food Photo Compilation matching Image 3 */}
-            <div className="relative w-full max-w-[520px] h-[340px] sm:h-[420px]">
-              <Image
-                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80"
-                alt="24/7 Flavours Burger, Fries & Soda"
-                fill
-                priority
-                className="object-contain filter drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* Bottom Floating Feature Bar matching Image 3 */}
-        <div className="mt-10 bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-gray-100 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-            
-            {/* 1. 24/7 Open */}
-            <div className="flex items-center space-x-4 pt-2 md:pt-0 sm:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FCE3CF] text-[#E85D04] flex items-center justify-center flex-shrink-0">
-                <Clock size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-base text-[#0F2C21] leading-tight">24/7 Open</h4>
-                <p className="text-xs text-gray-500 mt-0.5">Always cooking, day or night</p>
-              </div>
-            </div>
-
-            {/* 2. 30 min ETA */}
-            <div className="flex items-center space-x-4 pt-4 md:pt-0 sm:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FCE3CF] text-[#E85D04] flex items-center justify-center flex-shrink-0">
-                <Bike size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-base text-[#0F2C21] leading-tight">30 min ETA</h4>
-                <p className="text-xs text-gray-500 mt-0.5">Hot and fresh to your door</p>
-              </div>
-            </div>
-
-            {/* 3. No middleman */}
-            <div className="flex items-center space-x-4 pt-4 md:pt-0 sm:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FCE3CF] text-[#E85D04] flex items-center justify-center flex-shrink-0">
-                <Users size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-base text-[#0F2C21] leading-tight">No middleman</h4>
-                <p className="text-xs text-gray-500 mt-0.5">Ordered direct from our kitchen</p>
-              </div>
-            </div>
-
+            <a className="button button-secondary min-h-[58px] inline-flex items-center justify-center gap-3 px-7 rounded-[13px] border-[1.5px] border-[#062d26] bg-[rgba(255,250,243,0.72)] text-[#062d26] text-[15px] font-[800] hover:-translate-y-0.5 hover:bg-[#062d26] hover:text-white transition-all" href="#snack-carousel">
+              Quick bites
+            </a>
           </div>
         </div>
 
-      </div>
-    </section>
+        {/* Right Hero Art Promo Image */}
+        <div className="hero-art grid place-items-center min-w-0" aria-label="30 percent off burger, fries and drink promotion">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative w-full max-w-[650px] aspect-[4/3] rounded-[18px] overflow-hidden"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80"
+              alt="30% off meal deal with a burger, fries and iced drink"
+              fill
+              priority
+              className="object-contain filter drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
+            />
+          </motion.div>
+        </div>
+
+      </section>
+
+      {/* Trust Bar Section matching user source code */}
+      <section className="trust-bar grid grid-cols-1 md:grid-cols-3 items-center min-h-[112px] px-6 py-4 border border-white/90 rounded-[17px] bg-[rgba(255,255,255,0.9)] shadow-[0_10px_35px_rgba(72,49,28,0.045)] mb-8" aria-label="Delivery and service highlights">
+        
+        {/* 1. 24/7 Open */}
+        <div className="trust-item flex items-center gap-4 py-3 md:py-0 px-2 sm:px-6">
+          <span className="trust-icon flex-shrink-0 w-[58px] h-[58px] grid place-items-center rounded-full bg-[#fff7ef] text-[#bd3c0d]" aria-hidden="true">
+            <svg viewBox="0 0 24 24" className="w-[30px] h-[30px] fill-none stroke-current stroke-[2.5] stroke-linecap-round stroke-linejoin-round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </span>
+          <span className="trust-copy grid gap-1">
+            <strong className="text-[15px] font-[850] leading-snug text-[#062d26]">24/7 Open</strong>
+            <span className="text-[#676a67] text-[12px] leading-tight">Always cooking, day or night</span>
+          </span>
+        </div>
+
+        {/* 2. 30 min ETA */}
+        <div className="trust-item flex items-center gap-4 py-3 md:py-0 px-2 sm:px-6 border-t md:border-t-0 md:border-l border-[var(--line)]">
+          <span className="trust-icon flex-shrink-0 w-[58px] h-[58px] grid place-items-center rounded-full bg-[#fff7ef] text-[#bd3c0d]" aria-hidden="true">
+            <svg viewBox="0 0 24 24" className="w-[30px] h-[30px] fill-none stroke-current stroke-[2.5] stroke-linecap-round stroke-linejoin-round">
+              <circle cx="6" cy="17" r="2.3"/>
+              <circle cx="18" cy="17" r="2.3"/>
+              <path d="M8.5 17h5.2l-2.5-6H7.8L6 14.7m7.7.1 2-7h3l1.1 4.5H13m-4.2-3.3L7.5 6H4"/>
+            </svg>
+          </span>
+          <span className="trust-copy grid gap-1">
+            <strong className="text-[15px] font-[850] leading-snug text-[#062d26]">30 min ETA</strong>
+            <span className="text-[#676a67] text-[12px] leading-tight">Hot and fresh to your door</span>
+          </span>
+        </div>
+
+        {/* 3. No middleman */}
+        <div className="trust-item flex items-center gap-4 py-3 md:py-0 px-2 sm:px-6 border-t md:border-t-0 md:border-l border-[var(--line)]">
+          <span className="trust-icon flex-shrink-0 w-[58px] h-[58px] grid place-items-center rounded-full bg-[#fff7ef] text-[#bd3c0d]" aria-hidden="true">
+            <svg viewBox="0 0 24 24" className="w-[30px] h-[30px] fill-none stroke-current stroke-[2.5] stroke-linecap-round stroke-linejoin-round">
+              <circle cx="9" cy="8" r="3"/>
+              <circle cx="17" cy="9" r="2.5"/>
+              <path d="M3.5 19c.2-3.4 2.4-5.2 5.5-5.2s5.4 1.8 5.6 5.2M15 14.2c2.9-.2 5.2 1.4 5.5 4.2"/>
+            </svg>
+          </span>
+          <span className="trust-copy grid gap-1">
+            <strong className="text-[15px] font-[850] leading-snug text-[#062d26]">No middleman</strong>
+            <span className="text-[#676a67] text-[12px] leading-tight">Ordered direct from our kitchen</span>
+          </span>
+        </div>
+
+      </section>
+
+    </div>
   );
 }

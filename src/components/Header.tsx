@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingCart, Search, Menu, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,89 +23,95 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FDF8F2]/95 backdrop-blur-md text-[#0F2C21] border-b border-gray-200/80 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
-        {/* Logo / Wordmark (Left) matching Image 3 */}
-        <Link href="/" className="flex items-center space-x-3 group">
-          <div className="w-11 h-11 bg-[#E85D04] rounded-2xl flex items-center justify-center font-display text-2xl text-white shadow-md transform group-hover:rotate-6 transition-transform">
-            24
-          </div>
-          <div className="flex flex-col">
-            <span className="font-display text-2xl tracking-tight leading-none text-[#0F2C21] group-hover:text-[#E85D04] transition-colors">
-              24/7 FLAVOURS
-            </span>
-            <span className="text-[10px] tracking-wider uppercase font-bold text-[#E85D04]">
-              UYO • NIGERIAN KITCHEN
-            </span>
-          </div>
-        </Link>
+    <header className="site-header px-[var(--gutter)] bg-var(--cream) relative z-40 border-b border-[var(--line)]">
+      
+      {/* Brand Logo & Tagline */}
+      <Link className="brand inline-flex items-center gap-3 w-fit" href="/" aria-label="24/7 Flavours home">
+        <span className="brand-mark font-display">24</span>
+        <span className="brand-copy flex flex-col gap-0.5">
+          <span className="brand-name font-display text-[clamp(17px,1.9vw,25px)] text-[#062d26] leading-none tracking-tight">
+            24/7 FLAVOURS
+          </span>
+          <span className="brand-tagline text-[9px] font-extrabold text-[#bd3c0d] tracking-[2.4px]">
+            UYO NIGERIAN KITCHEN
+          </span>
+        </span>
+      </Link>
 
-        {/* Desktop Center Navigation matching Image 3 */}
-        <nav className="hidden md:flex items-center space-x-8 text-base font-bold">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative py-1 transition-colors hover:text-[#E85D04] ${
-                  isActive ? 'text-[#0F2C21]' : 'text-gray-700'
-                }`}
-              >
-                {link.name}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavUnderline"
-                    className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#E85D04] rounded-full"
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+      {/* Main Navigation Links */}
+      <nav className="main-nav hidden md:flex items-center justify-center gap-[clamp(18px,3.2vw,48px)]" aria-label="Main navigation">
+        {navLinks.map((link) => {
+          const isActive = pathname === link.href;
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              aria-current={isActive ? 'page' : undefined}
+              className={`relative py-2.5 text-[13px] font-semibold tracking-tight transition-colors hover:text-[#bd3c0d] ${
+                isActive ? 'text-[#062d26] font-bold' : 'text-[#303c38]'
+              }`}
+            >
+              {link.name}
+              {isActive && (
+                <motion.span
+                  layoutId="navUnderline"
+                  className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#bd3c0d]"
+                />
+              )}
+            </Link>
+          );
+        })}
+      </nav>
 
-        {/* Right Cart Button matching Image 3 */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
-          <button
-            onClick={() => setSearchOpen(!searchOpen)}
-            aria-label="Search Menu"
-            className="p-2.5 rounded-full hover:bg-gray-200/60 text-[#0F2C21] transition-colors"
-          >
-            <Search size={20} />
-          </button>
+      {/* Header Actions (Search & Cart Button) */}
+      <div className="header-actions flex items-center justify-end gap-3">
+        <button
+          onClick={() => setSearchOpen(!searchOpen)}
+          aria-label="Search Menu"
+          className="p-2.5 rounded-full hover:bg-black/5 text-[#062d26] transition-colors"
+        >
+          <Search size={18} />
+        </button>
 
-          <motion.button
-            whileTap={{ scale: 0.92 }}
-            onClick={() => setIsCartOpen(true)}
-            className="bg-[#E85D04] hover:bg-[#DC5200] text-white px-5 py-2.5 rounded-2xl font-extrabold text-sm flex items-center space-x-2 shadow-orange-glow transition-all"
-          >
-            <ShoppingCart size={18} />
-            <span>Cart</span>
-            <span className="bg-white text-[#E85D04] font-extrabold text-xs w-5 h-5 rounded-full flex items-center justify-center">
-              {totalItems}
-            </span>
-          </motion.button>
+        <button
+          className="cart-button shadow-sm"
+          type="button"
+          onClick={() => setIsCartOpen(true)}
+          aria-label={`Cart, ${totalItems} items`}
+        >
+          <svg className="cart-icon w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="10" cy="20" r="1.3" fill="currentColor" />
+            <circle cx="18" cy="20" r="1.3" fill="currentColor" />
+          </svg>
+          <span className="font-bold text-sm">Cart</span>
+          <span className="cart-count">{totalItems}</span>
+        </button>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#0F2C21] rounded-lg hover:bg-gray-200/60"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-[#062d26] rounded-lg hover:bg-black/5"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
-      {/* Quick Search Drawer */}
+      {/* Search Drawer */}
       <AnimatePresence>
         {searchOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="bg-white border-t border-gray-200 overflow-hidden"
+            className="absolute top-full left-0 right-0 bg-white border-b border-[var(--line)] shadow-lg z-30"
           >
             <div className="max-w-3xl mx-auto p-4">
               <div className="relative flex items-center">
@@ -120,7 +126,7 @@ export default function Header() {
                       )}`;
                     }
                   }}
-                  className="w-full bg-gray-100 text-[#0F2C21] pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-[#E85D04] text-sm placeholder-gray-500"
+                  className="w-full bg-gray-50 text-[#062d26] pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#bd3c0d] text-sm"
                 />
               </div>
             </div>
@@ -128,21 +134,21 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-4 shadow-lg"
+            className="md:hidden absolute top-full left-0 right-0 bg-[#fffaf3] border-b border-[var(--line)] px-6 py-6 space-y-3 shadow-xl z-30"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-lg font-bold text-[#0F2C21] hover:text-[#E85D04] py-2 border-b border-gray-100"
+                className="block text-base font-bold text-[#062d26] hover:text-[#bd3c0d] py-2 border-b border-gray-100"
               >
                 {link.name}
               </Link>

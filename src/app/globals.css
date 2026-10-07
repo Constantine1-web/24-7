@@ -2,53 +2,175 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --brand-green: #14382B;
-    --brand-parchment: #FBF7EE;
-    --brand-orange: #E85D04;
-    --brand-yellow: #FFB703;
-  }
-
-  body {
-    background-color: var(--brand-parchment);
-    color: #1A1A1A;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    overflow-x: hidden;
-    -webkit-tap-highlight-color: transparent;
-  }
+:root {
+  color-scheme: light;
+  --cream: #fffaf3;
+  --ink: #062d26;
+  --orange: #bd3c0d;
+  --orange-hover: #a93209;
+  --gold: #ffbd3e;
+  --muted: #676a67;
+  --line: rgba(6, 45, 38, .12);
+  --surface: rgba(255, 255, 255, .9);
+  --page-width: 1440px;
+  --gutter: clamp(22px, 5.3vw, 84px);
+  --brand-green: #062d26;
+  --brand-parchment: #fffaf3;
+  --brand-orange: #bd3c0d;
+  --brand-yellow: #ffbd3e;
 }
 
-/* Custom scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #F2EADB;
-}
-::-webkit-scrollbar-thumb {
-  background: #14382B;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #E85D04;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-/* Typography Headings */
-.font-display {
-  font-family: 'Impact', 'Trebuchet MS', 'Arial Black', sans-serif;
-  letter-spacing: -0.02em;
+html {
+  scroll-behavior: smooth;
 }
 
-/* Curved wave divider styling */
-.wave-divider {
-  position: relative;
-  width: 100%;
-  line-height: 0;
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--ink);
+  background-color: var(--cream);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hide scrollbar for horizontal category pills */
+/* Custom Food Pattern Watermark Background */
+.food-doodles-bg {
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Page shell container */
+.page-shell {
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
+  padding: 0 var(--gutter) 26px;
+}
+
+/* Header Styles */
+.site-header {
+  min-height: 91px;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(120px, 1fr);
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border-radius: 12px;
+  background: var(--orange);
+  color: white;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -1.8px;
+}
+
+.brand-name {
+  font-size: clamp(17px, 1.9vw, 25px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -.9px;
+  white-space: nowrap;
+}
+
+.brand-tagline {
+  color: var(--orange);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 2.4px;
+  white-space: nowrap;
+}
+
+/* Cart Button */
+.cart-button {
+  min-height: 47px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 15px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease;
+}
+.cart-button:hover, .button-primary:hover {
+  transform: translateY(-2px);
+  background: var(--orange-hover);
+}
+
+.cart-count {
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 5px;
+  border-radius: 50px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+/* Trust Bar */
+.trust-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  min-height: 112px;
+  padding: 16px 25px;
+  border: 1px solid rgba(255,255,255,.92);
+  border-radius: 17px;
+  background: var(--surface);
+  box-shadow: 0 10px 35px rgba(72, 49, 28, .045);
+}
+
+.trust-item {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 0 clamp(8px, 2vw, 30px);
+}
+.trust-item + .trust-item {
+  border-left: 1px solid var(--line);
+}
+
+.trust-icon {
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff7ef;
+  color: var(--orange);
+}
+.trust-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hide scrollbar for horizontal categories */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
