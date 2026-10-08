@@ -98,7 +98,7 @@ export default function SnackCarousel() {
       setActiveIndex((prev) => (prev + 1) % snacksList.length);
     }, 2800);
     return () => clearInterval(interval);
-  }, [isPaused, snacksList.length]);
+  }, [isPaused, snacksList.length, activeIndex]);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % snacksList.length);
@@ -178,7 +178,7 @@ export default function SnackCarousel() {
               }
 
               const scale = isActive ? 1.1 : isAdjacent ? 0.88 : 0.72;
-              const opacity = isActive ? 1 : isAdjacent ? 0.75 : 0.3;
+              const opacity = isActive ? 1 : isAdjacent ? 0.75 : 0;
               const zIndex = isActive ? 20 : isAdjacent ? 10 : 0;
               const yPosition = isActive ? 15 : 0; // Active card elevated & offset down
 
@@ -198,8 +198,8 @@ export default function SnackCarousel() {
                     mass: 0.8,
                   }}
                   onClick={() => setActiveIndex(index)}
-                  style={{ zIndex }}
-                  className={`absolute w-[210px] sm:w-[250px] h-[310px] sm:h-[380px] rounded-[28px] p-5 flex flex-col justify-between cursor-pointer backdrop-blur-md ${
+                  style={{ zIndex, pointerEvents: opacity === 0 ? 'none' : 'auto' }}
+                  className={`absolute w-[210px] sm:w-[250px] h-[310px] sm:h-[380px] rounded-[28px] p-5 flex flex-col justify-between cursor-pointer backdrop-blur-md transition-colors transition-shadow duration-300 will-change-transform ${
                     isActive
                       ? 'bg-[#E85D04]/80 text-white border border-white/40 shadow-[0_16px_36px_rgba(232,93,4,0.38),inset_0_1.5px_1px_rgba(255,255,255,0.45)]'
                       : 'bg-[#F4DDCB]/80 text-[#3D1E12] border border-white/50 shadow-[0_8px_24px_rgba(61,30,18,0.08),inset_0_1px_1px_rgba(255,255,255,0.65)] hover:bg-[#F4DDCB]/90 hover:shadow-[0_10px_28px_rgba(61,30,18,0.12)]'
@@ -252,24 +252,26 @@ export default function SnackCarousel() {
                   </div>
 
                   {/* Active Card In-Card Button matching Image 1 */}
-                  {isActive ? (
-                    <motion.button
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.96 }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddActive(product);
-                      }}
-                      className="w-full backdrop-blur-md bg-[#7A1C00]/90 hover:bg-[#5C1400] text-white py-2.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(122,28,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_20px_rgba(92,20,0,0.5)] flex items-center justify-center space-x-1 border border-white/25 transition-all duration-300"
-                    >
-                      <ShoppingBag size={14} />
-                      <span>ADD TO CART</span>
-                    </motion.button>
-                  ) : (
-                    <div className="text-center text-[10px] font-bold text-[#8A4F39] uppercase py-1">
-                      TAP TO SELECT
-                    </div>
-                  )}
+                  <div className="h-[44px] w-full flex items-end justify-center mt-auto">
+                    {isActive ? (
+                      <motion.button
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.96 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleAddActive(product);
+                        }}
+                        className="w-full backdrop-blur-md bg-[#7A1C00]/90 hover:bg-[#5C1400] text-white py-2.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(122,28,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_20px_rgba(92,20,0,0.5)] flex items-center justify-center space-x-1 border border-white/25 transition-all duration-300"
+                      >
+                        <ShoppingBag size={14} />
+                        <span>ADD TO CART</span>
+                      </motion.button>
+                    ) : (
+                      <div className="w-full text-center text-[10px] font-bold text-[#8A4F39] uppercase py-1">
+                        TAP TO SELECT
+                      </div>
+                    )}
+                  </div>
                 </motion.div>
               );
             })}
