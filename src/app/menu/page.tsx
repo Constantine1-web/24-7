@@ -4,17 +4,16 @@ import React, { useState, useMemo } from 'react';
 import ProductCard from '@/components/ProductCard';
 import Footer from '@/components/Footer';
 import { MENU_ITEMS } from '@/data/menuData';
-import { CategoryId } from '@/types';
-import { Search, Flame, Filter, ChevronRight } from 'lucide-react';
+import { Search, Flame } from 'lucide-react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function MenuPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [onlySpicy, setOnlySpicy] = useState(false);
 
-  // New fast-food oriented categories replacing the old traditional focus
+  // Re-architected fast-food oriented categories
   const categories = [
     { id: 'all', label: 'ALL DISHES' },
     { id: 'burgers', label: 'SMASH BURGERS' },
@@ -29,16 +28,15 @@ export default function MenuPage() {
 
   const filteredItems = useMemo(() => {
     return MENU_ITEMS.filter((item) => {
-      // Dynamic category mapping based on the actual items to match new labels
       let itemCat = item.category;
       
-      // Map products to the newly positioned fast-casual categories without modifying underlying data shape
+      // Dynamic category mapping to match the new positioning
       if (item.name.toLowerCase().includes('pie') || item.name.toLowerCase().includes('puff') || item.name.toLowerCase().includes('chin chin')) {
         itemCat = 'pastries';
       } else if (item.name.toLowerCase().includes('fries')) {
         itemCat = 'fries';
       } else if (item.name.toLowerCase().includes('shawarma')) {
-        itemCat = 'burgers'; // Group wraps with burgers for this UI view
+        itemCat = 'burgers'; 
       }
 
       if (selectedCategory !== 'all' && itemCat !== selectedCategory) {
@@ -56,221 +54,188 @@ export default function MenuPage() {
   }, [selectedCategory, searchQuery, onlySpicy]);
 
   return (
-    <div className="min-h-screen flex flex-col text-brand-darkGreen overflow-x-hidden">
+    <div className="min-h-screen flex flex-col text-brand-darkGreen overflow-x-hidden relative">
       
       {/* 
-        PREMIUM HERO SECTION 
-        Responsive layout: Stacks on mobile, splits dynamically on tablet/desktop. 
-        Uses absolute layered imagery for an editorial/advertising feel.
+        =========================================
+        THE NEW EDITORIAL CRAVING HERO
+        =========================================
       */}
-      <div className="relative bg-brand-green text-brand-parchment pt-8 pb-12 lg:pt-16 lg:pb-20 px-4 sm:px-6 lg:px-8 border-b border-brand-lightGreen/30 overflow-hidden">
+      <div className="relative pt-12 pb-8 sm:pt-20 sm:pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden z-10 bg-brand-parchment">
         
-        {/* Floating Background Textures (Hidden on mobile to prevent clutter) */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-screen hidden md:block" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '300px', filter: 'invert(1)' }}></div>
-        <div className="absolute top-[-5%] left-[-5%] w-[300px] h-[300px] opacity-[0.05] pointer-events-none hidden md:block transform -rotate-12">
-          <Image src="/images/food-doodles-core.png" alt="" fill className="object-cover filter invert" />
-        </div>
-        <div className="absolute -right-20 -top-20 w-[400px] h-[400px] opacity-[0.05] pointer-events-none hidden lg:block">
-           <Image src="/images/food-doodles-core.png" alt="" fill className="object-cover filter invert" />
-        </div>
+        {/* Subtle Depth & Doodle Background Layer */}
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none mix-blend-multiply z-0" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '350px' }}></div>
+        {/* Abstract Depth Rings */}
+        <div className="absolute -left-[10%] top-0 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] border-[1px] border-brand-darkGreen/5 rounded-full pointer-events-none"></div>
+        <div className="absolute right-[-5%] top-[20%] w-[30vw] h-[30vw] max-w-[400px] max-h-[400px] border-[1px] border-brand-orange/5 rounded-full pointer-events-none"></div>
+        <div className="absolute left-1/2 top-[40%] -translate-x-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] bg-brand-orange/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
+          
+          {/* 1. HEADLINE: WHAT ARE YOU CRAVING? */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col items-center"
+          >
+            <h1 className="font-display text-[12vw] sm:text-[6rem] lg:text-[8rem] uppercase tracking-tighter leading-[0.85] text-brand-darkGreen">
+              What are you
+              <br />
+              <span className="text-brand-orange">Craving?</span>
+            </h1>
+          </motion.div>
+
+          {/* 2. THE FOOD COMPOSITION (Plates on a table / Cohesive Cluster) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full max-w-[900px] h-[320px] sm:h-[450px] lg:h-[550px] mt-8 sm:mt-12 mb-10 mx-auto"
+          >
+            {/* The layout simulates a feast clustered on a table. Circles = plates/bowls. */}
             
-            {/* Left: Typography & Controls */}
-            <div className="flex-1 w-full max-w-2xl text-center lg:text-left">
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center space-x-2 bg-brand-yellow/10 border border-brand-yellow/30 text-brand-yellow px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-5 shadow-sm"
-              >
-                <span>24/7 Flavours Menu</span>
-              </motion.div>
-              
-              <motion.h1 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] uppercase tracking-tight text-white leading-[0.95] mb-5"
-              >
-                EXPLORE <span className="text-brand-orange block mt-1">THE KITCHEN</span>
-              </motion.h1>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed mb-8"
-              >
-                Freshly prepared smash burgers, loaded fries, golden pastries, crispy chicken, and ice-cold craft beverages. Made to order, just for you.
-              </motion.p>
-
-              {/* Refined Search & Filter Controls */}
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-xl mx-auto lg:mx-0"
-              >
-                <div className="relative flex-1 w-full group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Search size={20} className="text-gray-400 group-focus-within:text-brand-yellow transition-colors" />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search burgers, fries, pizza..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-white/5 backdrop-blur-md text-white pl-12 pr-4 py-4 rounded-2xl border border-white/10 focus:outline-none focus:border-brand-yellow focus:bg-white/10 transition-all font-medium placeholder-gray-400 shadow-inner text-sm sm:text-base"
-                  />
-                </div>
-
-                <button
-                  onClick={() => setOnlySpicy(!onlySpicy)}
-                  className={`w-full sm:w-auto px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-wide flex items-center justify-center space-x-2 transition-all shadow-lg ${
-                    onlySpicy
-                      ? 'bg-[#bd3c0d] text-white border-2 border-[#bd3c0d] shadow-red-900/50'
-                      : 'bg-white/5 text-white border-2 border-white/10 hover:bg-white/10 hover:border-white/30'
-                  }`}
-                >
-                  <Flame size={18} className={onlySpicy ? 'fill-white animate-pulse' : 'text-gray-400'} />
-                  <span>{onlySpicy ? 'SPICY: ON' : 'SPICY ONLY'}</span>
-                </button>
-              </motion.div>
+            {/* Center Dominant: Burger */}
+            <div className="absolute z-30 left-1/2 top-1/2 -translate-x-1/2 -translate-y-[45%] sm:-translate-y-1/2 w-[220px] h-[220px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px] rounded-full border-[6px] sm:border-[8px] border-white shadow-[0_20px_50px_-12px_rgba(6,45,38,0.25)] overflow-hidden transition-transform duration-700 hover:scale-[1.02]">
+              <Image src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Smash Burger" fill className="object-cover" />
             </div>
 
-            {/* Right: Editorial Food Composition */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="flex-1 w-full relative h-[280px] sm:h-[350px] lg:h-[420px] flex items-center justify-center mt-6 lg:mt-0"
+            {/* Top Left: Crispy Chicken / Wings */}
+            <div className="absolute z-20 left-[5%] sm:left-[12%] lg:left-[15%] top-[10%] sm:top-[12%] w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] lg:w-[240px] lg:h-[240px] rounded-full border-[4px] sm:border-[6px] border-white shadow-[0_15px_35px_-10px_rgba(6,45,38,0.2)] overflow-hidden">
+              <Image src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80" alt="Crispy Chicken" fill className="object-cover" />
+            </div>
+
+            {/* Bottom Right: Loaded Fries */}
+            <div className="absolute z-20 right-[5%] sm:right-[10%] lg:right-[15%] bottom-[15%] sm:bottom-[10%] lg:bottom-[8%] w-[150px] h-[150px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border-[4px] sm:border-[6px] border-white shadow-[0_15px_40px_-10px_rgba(6,45,38,0.2)] overflow-hidden">
+              <Image src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80" alt="Loaded Fries" fill className="object-cover" />
+            </div>
+
+            {/* Bottom Left: Pastry / Dessert */}
+            <div className="absolute z-10 left-[12%] sm:left-[22%] lg:left-[25%] bottom-[5%] sm:bottom-0 w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px] rounded-full border-[4px] border-white shadow-[0_10px_30px_-10px_rgba(6,45,38,0.15)] overflow-hidden">
+              <Image src="/images/puff-puff.png" alt="Fresh Pastries" fill className="object-cover" />
+            </div>
+
+            {/* Top Right: Refreshing Drink */}
+            <div className="absolute z-10 right-[15%] sm:right-[22%] lg:right-[26%] top-[5%] sm:top-0 w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[180px] lg:h-[180px] rounded-full border-[4px] border-white shadow-[0_10px_30px_-10px_rgba(6,45,38,0.15)] overflow-hidden">
+              <Image src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Cold Drink" fill className="object-cover" />
+            </div>
+          </motion.div>
+
+          {/* 3. CATEGORY NAVIGATION (Pick Your Craving) */}
+          <div className="w-full max-w-5xl mx-auto mt-4 sm:mt-8">
+            <motion.h3 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-brand-darkGreen/50 mb-4 sm:mb-6"
             >
-              {/* Soft spotlight behind the food */}
-              <div className="absolute inset-0 bg-brand-yellow/15 rounded-full blur-[80px] transform scale-90 mix-blend-screen"></div>
-              
-              {/* Primary Subject (Burger/Combo) */}
-              <div className="relative w-[110%] sm:w-[100%] h-full z-20 hover:scale-105 transition-transform duration-700">
-                <Image 
-                  src="/images/hero-promo.png" 
-                  alt="Premium Smash Burger Combo" 
-                  fill 
-                  priority
-                  className="object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.5)]" 
-                />
-              </div>
+              Select A Category
+            </motion.h3>
 
-              {/* Floating secondary element - Pizza slice */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute -right-2 sm:-right-6 top-8 sm:top-10 w-24 h-24 sm:w-36 sm:h-36 z-10 rotate-12 drop-shadow-2xl opacity-90 hidden sm:block"
-              >
-                <Image src="/images/pepperoni-pizza-slice.png" alt="Pizza slice" fill className="object-contain" />
-              </motion.div>
-
-              {/* Floating secondary element - Shawarma / Fries */}
-              <motion.div 
-                animate={{ y: [0, 15, 0] }}
-                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                className="absolute -left-2 sm:left-0 bottom-4 w-28 h-28 sm:w-40 sm:h-40 z-30 -rotate-12 drop-shadow-2xl hidden sm:block"
-              >
-                <Image src="/images/crispy-yam-fries.png" alt="Crispy Yam Fries" fill className="object-contain" />
-              </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="flex overflow-x-auto no-scrollbar gap-2 sm:gap-3 justify-start lg:justify-center px-2 pb-6 -mx-4 sm:mx-0 snap-x"
+            >
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`snap-start shrink-0 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 ${
+                    selectedCategory === category.id
+                      ? 'bg-brand-darkGreen text-white shadow-[0_8px_20px_-6px_rgba(6,45,38,0.4)] transform -translate-y-1'
+                      : 'bg-white text-brand-darkGreen border border-brand-darkGreen/10 hover:bg-brand-orange/5 hover:border-brand-orange/30'
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
             </motion.div>
           </div>
-        </div>
-      </div>
 
-      {/* 
-        CATEGORY NAVIGATION
-        Sticky, horizontally scrollable, premium pills.
-        Smooth gradient masks on edges indicate scrollability on mobile.
-      */}
-      <div className="sticky top-[64px] lg:top-20 z-40 bg-brand-parchment/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto relative">
-          {/* Scroll fade masks for mobile */}
-          <div className="absolute left-0 top-0 bottom-0 w-4 sm:w-6 bg-gradient-to-r from-brand-parchment to-transparent z-10 pointer-events-none lg:hidden"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-l from-brand-parchment to-transparent z-10 pointer-events-none lg:hidden"></div>
-          
-          <div className="flex space-x-2 sm:space-x-3 overflow-x-auto no-scrollbar py-3 sm:py-4 px-4 sm:px-6 lg:px-8 items-center">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`flex-shrink-0 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-black text-[10px] sm:text-[11px] md:text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-300 border-2 ${
-                  selectedCategory === cat.id
-                    ? 'bg-brand-orange text-white border-brand-orange shadow-lg shadow-brand-orange/30 scale-[1.02] sm:scale-105'
-                    : 'bg-white text-brand-darkGreen border-gray-200 hover:border-brand-orange/50 hover:bg-orange-50/50'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Menu Cards Grid */}
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-16 flex-grow">
-        
-        {/* Results Header */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-6 sm:mb-8 gap-3 sm:gap-4">
-          <div>
-            <h2 className="font-display text-xl sm:text-2xl md:text-3xl uppercase text-brand-darkGreen tracking-tight">
-              {selectedCategory === 'all' 
-                ? 'Full Menu' 
-                : categories.find(c => c.id === selectedCategory)?.label}
-            </h2>
-            <p className="text-gray-500 font-medium mt-1 text-sm sm:text-base">
-              Showing {filteredItems.length} {filteredItems.length === 1 ? 'item' : 'items'}
-            </p>
-          </div>
-          
-          {selectedCategory !== 'all' && (
-            <button
-              onClick={() => setSelectedCategory('all')}
-              className="inline-flex items-center self-start sm:self-auto text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-[#bd3c0d] transition-colors bg-brand-orange/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full"
-            >
-              <span>View All</span>
-              <ChevronRight size={14} className="ml-1" />
-            </button>
-          )}
-        </div>
-
-        {filteredItems.length === 0 ? (
+          {/* 4. UTILITY: SEARCH & FILTER (Lower Hierarchy) */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-16 sm:py-24 bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm px-4"
+            transition={{ delay: 0.5 }}
+            className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-2xl mx-auto mt-2 sm:mt-6 px-2"
           >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-              <Filter size={28} className="text-gray-400 sm:w-8 sm:h-8" />
+            <div className="relative flex-1 w-full group">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Search size={18} className="text-brand-darkGreen/30 group-focus-within:text-brand-orange transition-colors" strokeWidth={2.5} />
+              </div>
+              <input
+                type="text"
+                placeholder="Search burgers, pastries, pizza..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-white text-brand-darkGreen pl-11 pr-4 py-3.5 rounded-[16px] border border-brand-darkGreen/10 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all font-bold placeholder-brand-darkGreen/30 shadow-sm text-xs sm:text-sm uppercase tracking-wide"
+              />
             </div>
-            <h3 className="font-display text-xl sm:text-2xl uppercase text-brand-darkGreen mb-2">
-              NO CRAVINGS FOUND
-            </h3>
-            <p className="text-gray-500 font-medium max-w-md mx-auto text-sm sm:text-base">
-              We couldn't find any dishes matching your current filters. Try adjusting your search or category.
-            </p>
+
             <button
-               onClick={() => {
-                 setSearchQuery('');
-                 setOnlySpicy(false);
-                 setSelectedCategory('all');
-               }}
-               className="mt-6 font-bold text-brand-orange uppercase tracking-wider text-xs sm:text-sm hover:underline"
+              onClick={() => setOnlySpicy(!onlySpicy)}
+              className={`w-full sm:w-auto px-6 py-3.5 rounded-[16px] font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center space-x-2 transition-all ${
+                onlySpicy
+                  ? 'bg-red-600 text-white shadow-[0_8px_20px_-6px_rgba(220,38,38,0.4)] border border-red-600'
+                  : 'bg-white text-brand-darkGreen border border-brand-darkGreen/10 hover:bg-red-50 hover:border-red-200 hover:text-red-600 shadow-sm'
+              }`}
             >
-              Clear all filters
+              <Flame size={18} strokeWidth={2.5} className={onlySpicy ? 'fill-white animate-pulse' : 'text-current opacity-70'} />
+              <span>{onlySpicy ? 'Spicy Only' : 'Spicy'}</span>
             </button>
           </motion.div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-            {filteredItems.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
-          </div>
-        )}
+
+        </div>
+      </div>
+
+      {/* 
+        =========================================
+        MENU PRODUCT GRID
+        =========================================
+      */}
+      <div className="flex-1 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 relative z-20 bg-brand-parchment border-t border-brand-darkGreen/5">
+        <div className="max-w-7xl mx-auto">
+          
+          <AnimatePresence mode="wait">
+            {filteredItems.length > 0 ? (
+              <motion.div 
+                key={selectedCategory + searchQuery + onlySpicy}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
+              >
+                {filteredItems.map((item) => (
+                  <ProductCard key={item.id} item={item} />
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div 
+                key="empty"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex flex-col items-center justify-center py-24 text-center"
+              >
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm border border-brand-darkGreen/10">
+                  <Search size={32} className="text-brand-darkGreen/30" />
+                </div>
+                <h3 className="font-display text-2xl uppercase text-brand-darkGreen mb-2">No cravings found</h3>
+                <p className="text-brand-darkGreen/60 text-sm max-w-sm">
+                  We couldn't find any dishes matching your search. Try a different term or clear your filters.
+                </p>
+                <button 
+                  onClick={() => { setSearchQuery(''); setOnlySpicy(false); setSelectedCategory('all'); }}
+                  className="mt-8 px-6 py-3 bg-brand-darkGreen text-white font-bold text-xs uppercase tracking-widest rounded-full hover:bg-brand-orange transition-colors"
+                >
+                  View Full Menu
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </div>
       </div>
 
       <Footer />
