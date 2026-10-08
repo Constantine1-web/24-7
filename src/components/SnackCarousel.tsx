@@ -63,7 +63,7 @@ const SNACK_ATTACK_ITEMS: MenuItem[] = [
     category: 'snacks',
     price: 2500,
     description: 'Golden shortcrust pastry filled with tender shredded chicken, potatoes & sweet carrots.',
-    image: 'https://images.unsplash.com/photo-1572383672419-ab35444a6934?auto=format&fit=crop&w=800&q=80',
+    image: '/images/golden-chicken-pie.jpg',
     prepTime: '8-10 mins',
     calories: '440 kcal',
     popular: true,
