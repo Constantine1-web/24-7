@@ -243,7 +243,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'pizza',
     price: 8500,
     description: 'Hand-tossed crust, spicy tomato sauce, mozzarella, sliced beef pepperoni, onion rings & Suya seasoning.',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+    image: '/images/suya-pizza.jpg',
     prepTime: '20-25 mins',
     calories: '1100 kcal',
     available: true,
