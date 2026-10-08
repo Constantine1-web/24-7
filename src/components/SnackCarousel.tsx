@@ -151,9 +151,9 @@ export default function SnackCarousel() {
           <button
             onClick={handlePrev}
             aria-label="Previous Snack"
-            className="absolute left-2 sm:left-10 z-30 bg-white/90 hover:bg-[#E85D04] text-[#3D1E12] hover:text-white p-3 rounded-full shadow-lg transition-colors border border-gray-200"
+            className="absolute left-1 sm:left-4 lg:left-8 z-30 bg-white/90 hover:bg-[#E85D04] text-[#3D1E12] hover:text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors border border-gray-200"
           >
-            <ChevronLeft size={22} />
+            <ChevronLeft size={20} className="sm:w-[22px] sm:h-[22px]" />
           </button>
 
           {/* Cards Display Container */}
@@ -277,9 +277,9 @@ export default function SnackCarousel() {
           <button
             onClick={handleNext}
             aria-label="Next Snack"
-            className="absolute right-2 sm:right-10 z-30 bg-white/90 hover:bg-[#E85D04] text-[#3D1E12] hover:text-white p-3 rounded-full shadow-lg transition-colors border border-gray-200"
+            className="absolute right-1 sm:right-4 lg:right-8 z-30 bg-white/90 hover:bg-[#E85D04] text-[#3D1E12] hover:text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors border border-gray-200"
           >
-            <ChevronRight size={22} />
+            <ChevronRight size={20} className="sm:w-[22px] sm:h-[22px]" />
           </button>
         </div>
 

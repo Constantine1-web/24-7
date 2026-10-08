@@ -65,7 +65,7 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 250 }}
-            className="w-screen max-w-[440px] bg-brand-parchment shadow-2xl flex flex-col relative"
+            className="w-full sm:w-[440px] max-w-[100vw] bg-brand-parchment shadow-2xl flex flex-col relative"
           >
             {/* Subtle Brand Doodle Texture Layer */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply z-0" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '350px' }}></div>
@@ -73,7 +73,7 @@ export default function CartDrawer() {
             <div className="absolute bottom-0 left-0 right-0 h-[500px] bg-gradient-to-t from-brand-orange/5 to-transparent pointer-events-none z-0"></div>
 
             {/* MAIN SCROLLABLE AREA */}
-            <div className="flex-1 overflow-y-auto relative z-10 flex flex-col no-scrollbar pb-[180px]">
+            <div className="flex-1 overflow-y-auto relative z-10 flex flex-col no-scrollbar pb-[calc(180px+env(safe-area-inset-bottom,0px))]">
               
               <div className="px-6 pt-10 sm:pt-12">
                 {/* 1. EDITORIAL HEADER */}
@@ -300,11 +300,11 @@ export default function CartDrawer() {
 
             {/* 8. FIXED CHECKOUT CTA (The Climax) */}
             {cart.length > 0 && (
-              <div className="absolute bottom-0 left-0 right-0 bg-brand-parchment/95 backdrop-blur-xl border-t border-brand-darkGreen/10 px-6 py-6 pb-8 z-20 shadow-[0_-10px_40px_rgba(6,45,38,0.05)]">
+              <div className="absolute bottom-0 left-0 right-0 bg-brand-parchment/95 backdrop-blur-xl border-t border-brand-darkGreen/10 px-5 sm:px-6 py-5 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] z-20 shadow-[0_-10px_40px_rgba(6,45,38,0.05)]">
                 
-                <div className="flex justify-between items-end mb-5 px-1">
+                <div className="flex justify-between items-end mb-4 px-1">
                   <span className="text-xs font-black uppercase tracking-widest text-brand-darkGreen/50 pb-1">Total Amount</span>
-                  <span className="text-4xl sm:text-5xl font-display font-black text-brand-orange leading-none">
+                  <span className="text-3xl sm:text-5xl font-display font-black text-brand-orange leading-none">
                     ₦{total.toLocaleString()}
                   </span>
                 </div>
@@ -313,10 +313,10 @@ export default function CartDrawer() {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-brand-darkGreen hover:bg-brand-orange text-white py-5 rounded-[20px] font-black text-sm sm:text-base uppercase tracking-widest flex items-center justify-center space-x-3 shadow-xl transition-all"
+                    className="w-full bg-brand-darkGreen hover:bg-brand-orange text-white py-4 sm:py-5 rounded-[20px] font-black text-xs sm:text-base uppercase tracking-widest flex items-center justify-center space-x-2.5 sm:space-x-3 shadow-xl transition-all"
                   >
                     <span>PROCEED TO CHECKOUT</span>
-                    <ArrowRight size={20} strokeWidth={2.5} />
+                    <ArrowRight size={18} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
                   </motion.button>
                 </Link>
               </div>
