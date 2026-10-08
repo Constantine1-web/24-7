@@ -211,7 +211,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'snacks',
     price: 3500,
     description: 'Crispy double-cooked potato fries dusted in Yaji pepper, melted cheddar, scallions and shredded beef.',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80',
+    image: '/images/loaded-fries.png',
     badge: 'SNACK POPULAR',
     popular: false,
     prepTime: '10-12 mins',
