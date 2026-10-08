@@ -21,7 +21,7 @@ export default function HeroSection() {
             <span className="accent">Neither do we.</span>
           </h1>
 
-          <p className="hero-description text-lg font-medium text-[#2d3834] max-w-lg mb-6">
+          <p className="hero-description text-lg font-medium text-[#2d3834] dark:text-[#a3a8a5] max-w-lg mb-6">
             Fresh burgers, Suya wings, parfaits and ice-cold Zobo, made daily in Uyo.
           </p>
 
@@ -33,20 +33,20 @@ export default function HeroSection() {
                   <span className="arrow" aria-hidden="true">→</span>
                 </Link>
 
-                <a className="button button-secondary" href="#snack-carousel">
+                <a className="button button-secondary dark:bg-[#10241d] dark:text-brand-parchment dark:border-[#1d4e3d]" href="#snack-carousel">
                   Quick bites
                 </a>
               </div>
-              <span className="text-xs font-bold text-[#676a67] ml-2">Delivery & pickup available</span>
+              <span className="text-xs font-bold text-[#676a67] dark:text-[#a3a8a5] ml-2">Delivery & pickup available</span>
             </div>
           </div>
 
           {/* Trust Row */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-semibold text-[#676a67]">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-semibold text-[#676a67] dark:text-[#a3a8a5]">
             <div className="flex text-[#ffbd3e] tracking-widest text-base sm:text-lg">
               ★★★★★
             </div>
-            <span className="text-[#062d26] font-extrabold ml-0.5 sm:ml-1">4.9</span>
+            <span className="text-[#062d26] dark:text-brand-parchment font-extrabold ml-0.5 sm:ml-1">4.9</span>
             <span className="opacity-50 hidden sm:inline">·</span>
             <span className="opacity-50 sm:hidden">|</span>
             <span>30 min delivery</span>

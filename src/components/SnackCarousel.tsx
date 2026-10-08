@@ -119,7 +119,7 @@ export default function SnackCarousel() {
   return (
     <section
       id="snack-carousel"
-      className="py-16 md:py-24 text-[#0F2C21] relative overflow-hidden border-t border-b border-gray-200/60"
+      className="py-16 md:py-24 text-[#0F2C21] dark:text-brand-parchment relative overflow-hidden border-t border-b border-gray-200/60 dark:border-brand-lightGreen/30"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
