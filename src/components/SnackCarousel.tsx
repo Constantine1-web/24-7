@@ -27,7 +27,7 @@ const SNACK_ATTACK_ITEMS: MenuItem[] = [
     category: 'snacks',
     price: 3500,
     description: 'Double-wrapped lavash bread stuffed with juicy grilled chicken, sausage, creamy garlic mayo & crunchy cabbage.',
-    image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=80',
+    image: '/images/loaded-shawarma.png',
     prepTime: '10-12 mins',
     calories: '540 kcal',
     popular: true,
