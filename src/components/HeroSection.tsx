@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
-    <div className="w-full">
+    <div className="page-shell">
       {/* Main Hero Section matching reference image pixel-for-pixel */}
       <section className="hero" aria-labelledby="hero-title">
         
