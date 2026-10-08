@@ -101,7 +101,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'burgers',
     price: 5000,
     description: 'Fried buttermilk chicken thigh tossed in Yaji spice, crunchy cabbage slaw, pickled cucumbers & honey mustard.',
-    image: 'https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=800&q=80',
+    image: '/images/suya-chicken-burger.jpg',
     badge: 'SPICY',
     spicy: true,
     popular: false,
