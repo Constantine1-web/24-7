@@ -193,9 +193,9 @@ export default function SnackCarousel() {
                   }}
                   transition={{
                     type: 'spring',
-                    stiffness: 190,
-                    damping: 22,
-                    mass: 0.8,
+                    stiffness: 350,
+                    damping: 25,
+                    mass: 0.5,
                   }}
                   onClick={() => setActiveIndex(index)}
                   style={{ zIndex }}
