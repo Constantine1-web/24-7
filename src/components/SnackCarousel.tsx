@@ -284,14 +284,14 @@ export default function SnackCarousel() {
         </div>
 
         {/* Active Snack Description & Detail Card */}
-        <div className="max-w-xl mx-auto mt-6 bg-[#FAF0E6] rounded-2xl p-4 sm:p-5 border border-[#F4DDCB] shadow-sm text-center">
-          <h4 className="font-display text-lg uppercase text-[#3D1E12] tracking-tight">
+        <div className="max-w-xl mx-auto mt-6 bg-white/30 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] text-center">
+          <h4 className="font-display font-bold text-xl uppercase text-[#3D1E12] tracking-tight">
             {activeSnack.name}
           </h4>
-          <p className="text-gray-600 text-xs sm:text-sm mt-1 font-normal">
+          <p className="text-[#3D1E12] text-sm sm:text-base mt-2 font-semibold">
             {activeSnack.description}
           </p>
-          <div className="mt-3 flex items-center justify-center gap-4 text-xs font-bold text-[#8A4F39]">
+          <div className="mt-4 flex items-center justify-center gap-5 text-sm font-extrabold text-[#8A4F39]">
             <span>⏱️ {activeSnack.prepTime}</span>
             <span>🔥 {activeSnack.calories}</span>
             <span className="text-[#E85D04] font-extrabold text-sm">₦{activeSnack.price.toLocaleString()}</span>
