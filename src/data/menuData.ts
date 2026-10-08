@@ -163,7 +163,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'mains',
     price: 5500,
     description: 'Fire-roasted smoked Jollof rice served with sweet fried dodo plantain, coleslaw, and grilled quarter chicken.',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80',
+    image: '/images/jollof-rice.png',
     badge: 'BESTSELLER',
     popular: false,
     prepTime: '15-20 mins',
