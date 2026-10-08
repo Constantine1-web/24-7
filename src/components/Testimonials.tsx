@@ -53,8 +53,9 @@ export default function Testimonials() {
 
   return (
     <section className="py-20 bg-brand-orange text-white relative overflow-hidden">
-      {/* Decorative Wave Top & Bottom overlay shapes */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FBF7EE_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+      {/* Decorative Brand Texture */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-screen" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '240px', filter: 'invert(1)' }} />
+
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         

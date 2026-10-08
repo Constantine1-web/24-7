@@ -23,7 +23,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="px-[var(--gutter)] py-4 min-h-[91px] flex items-center justify-between gap-4 border-b-[1.5px] border-[rgba(6,45,38,0.12)] bg-[#fffaf3] relative z-40 shadow-sm" style={{ backgroundImage: "linear-gradient(rgba(255, 250, 243, 0.82), rgba(255, 250, 243, 0.82)), url('/images/food-doodles-bg.png')", backgroundRepeat: 'repeat', backgroundSize: '260px 260px' }}>
+    <header className="px-[var(--gutter)] py-4 min-h-[91px] flex items-center justify-between gap-4 border-b-[1.5px] border-[rgba(6,45,38,0.12)] bg-[#fffaf3]/85 backdrop-blur-md relative z-40 shadow-sm">
       
       {/* Brand Logo & Tagline */}
       <Link className="flex items-center gap-3 w-fit flex-shrink-0" href="/" aria-label="24/7 Flavours home">

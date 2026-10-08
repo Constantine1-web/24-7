@@ -46,7 +46,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans bg-brand-parchment text-brand-charcoal antialiased min-h-screen flex flex-col pb-20 md:pb-0">
+      <body className="font-sans bg-brand-parchment text-brand-charcoal antialiased min-h-screen flex flex-col pb-20 md:pb-0 relative z-0">
+        
+        {/* Global Brand Texture & Depth Layer */}
+        <div className="global-texture" aria-hidden="true">
+          <div className="global-texture-circle-1"></div>
+          <div className="global-texture-circle-2"></div>
+        </div>
+
         <OrderProvider>
           <CartProvider>
             <Header />

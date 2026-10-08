@@ -8,8 +8,9 @@ import { RESTAURANT_INFO } from '@/data/menuData';
 export default function Footer() {
   return (
     <footer className="bg-brand-darkGreen text-brand-parchment pt-16 pb-12 border-t border-brand-lightGreen/30 relative overflow-hidden">
-      {/* Decorative Blob */}
-      <div className="absolute right-0 top-0 w-96 h-96 bg-brand-yellow/10 rounded-full filter blur-3xl pointer-events-none" />
+      {/* Decorative Texture & Blob */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-screen" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '240px', filter: 'invert(1)' }}></div>
+      <div className="absolute right-0 top-0 w-96 h-96 bg-brand-yellow/15 rounded-full filter blur-3xl pointer-events-none mix-blend-screen" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-brand-lightGreen/30">

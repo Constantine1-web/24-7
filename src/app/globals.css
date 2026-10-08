@@ -151,18 +151,7 @@ body {
   }
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: url('/images/hero-doodle-bg.png');
-  background-repeat: repeat;
-  background-size: 340px 340px;
-  opacity: 0.02;
-  filter: invert(1);
-  pointer-events: none;
-}
+
 
 .eyebrow {
   display: inline-flex;
@@ -295,4 +284,60 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* --- Global Background System --- */
+.global-texture {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background-color: var(--brand-parchment);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.global-texture::before {
+  content: "";
+  position: absolute;
+  inset: -10%; /* Prevents edge artifacts on resize */
+  background-image: url('/images/food-doodles-core.png');
+  background-repeat: repeat;
+  background-size: 380px;
+  opacity: 0.035; /* Very subtle by default */
+  mix-blend-mode: multiply;
+  transform: rotate(-3deg);
+}
+
+/* Subtle depth geometry */
+.global-texture-circle-1 {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 50vw;
+  height: 50vw;
+  min-width: 400px;
+  min-height: 400px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(189, 60, 13, 0.04); /* brand orange */
+  background: radial-gradient(circle, rgba(255, 189, 62, 0.015) 0%, transparent 60%); /* brand yellow */
+}
+
+.global-texture-circle-2 {
+  position: absolute;
+  bottom: 5%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  min-width: 500px;
+  min-height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(6, 45, 38, 0.03); /* brand dark green */
+  background: radial-gradient(circle, rgba(6, 45, 38, 0.015) 0%, transparent 70%);
+}
+
+@media (max-width: 768px) {
+  .global-texture::before {
+    background-size: 260px;
+    opacity: 0.025; /* Softer on mobile */
+  }
 }

@@ -14,7 +14,7 @@ export default function HomePage() {
   const popularItems = MENU_ITEMS.filter((item) => item.popular).slice(0, 6);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-parchment">
+    <div className="min-h-screen flex flex-col">
       {/* Editorial Hero Section */}
       <HeroSection />
 
@@ -22,13 +22,14 @@ export default function HomePage() {
       <FeaturedCategories />
 
       {/* Wave Transition */}
-      <WaveDivider fillColor="#FBF7EE" bgColor="#FBF7EE" />
+      {/* Use transparent background for waves to allow texture to flow through */}
+      <WaveDivider fillColor="transparent" bgColor="transparent" />
 
       {/* Signature Snack Catalog ("GRAB A BITE") */}
       <SnackCarousel />
 
       {/* Popular Menu Preview Grid Section */}
-      <section className="py-16 md:py-24 bg-brand-parchment text-brand-darkGreen">
+      <section className="py-16 md:py-24 text-brand-darkGreen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">

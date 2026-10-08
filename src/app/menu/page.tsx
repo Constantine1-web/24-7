@@ -56,7 +56,7 @@ export default function MenuPage() {
   }, [selectedCategory, searchQuery, onlySpicy]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-parchment text-brand-darkGreen overflow-x-hidden">
+    <div className="min-h-screen flex flex-col text-brand-darkGreen overflow-x-hidden">
       
       {/* 
         PREMIUM HERO SECTION 
@@ -66,11 +66,12 @@ export default function MenuPage() {
       <div className="relative bg-brand-green text-brand-parchment pt-8 pb-12 lg:pt-16 lg:pb-20 px-4 sm:px-6 lg:px-8 border-b border-brand-lightGreen/30 overflow-hidden">
         
         {/* Floating Background Textures (Hidden on mobile to prevent clutter) */}
-        <div className="absolute top-[-5%] left-[-5%] w-[300px] h-[300px] opacity-[0.03] pointer-events-none hidden md:block transform -rotate-12">
-          <Image src="/images/hero-doodle-bg.png" alt="" fill className="object-cover filter invert" />
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-screen hidden md:block" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '300px', filter: 'invert(1)' }}></div>
+        <div className="absolute top-[-5%] left-[-5%] w-[300px] h-[300px] opacity-[0.05] pointer-events-none hidden md:block transform -rotate-12">
+          <Image src="/images/food-doodles-core.png" alt="" fill className="object-cover filter invert" />
         </div>
-        <div className="absolute -right-20 -top-20 w-[400px] h-[400px] opacity-[0.03] pointer-events-none hidden lg:block">
-           <Image src="/images/hero-doodle-bg.png" alt="" fill className="object-cover filter invert" />
+        <div className="absolute -right-20 -top-20 w-[400px] h-[400px] opacity-[0.05] pointer-events-none hidden lg:block">
+           <Image src="/images/food-doodles-core.png" alt="" fill className="object-cover filter invert" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
