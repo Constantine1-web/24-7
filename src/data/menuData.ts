@@ -227,7 +227,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'chicken',
     price: 4500,
     description: 'Char-grilled jumbo chicken wings tossed in Northern Yaji rub, fresh red onions & tomatoes.',
-    image: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/suya-wings.png',
     spicy: true,
     popular: true,
     prepTime: '15-18 mins',
