@@ -120,7 +120,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'snacks',
     price: 3000,
     description: 'Golden fried white yam batons dusted with sea salt and served with signature peppered Suya cream sauce.',
-    image: 'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80',
+    image: '/images/crispy-yam-fries.png',
     popular: true,
     prepTime: '10-15 mins',
     calories: '450 kcal',
