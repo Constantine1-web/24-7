@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import ProductCard from '@/components/ProductCard';
 import Footer from '@/components/Footer';
 import { MENU_ITEMS } from '@/data/menuData';
-import { Search, Flame } from 'lucide-react';
+import { Search, Flame, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -12,6 +12,17 @@ export default function MenuPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [onlySpicy, setOnlySpicy] = useState(false);
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollCategories = (direction: 'left' | 'right') => {
+    if (categoryScrollRef.current) {
+      const scrollAmount = 200;
+      categoryScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Re-architected fast-food oriented categories
   const categories = [
@@ -121,7 +132,7 @@ export default function MenuPage() {
           </motion.div>
 
           {/* 3. CATEGORY NAVIGATION (Pick Your Craving) */}
-          <div className="w-full max-w-5xl mx-auto mt-4 sm:mt-8">
+          <div className="w-full max-w-5xl mx-auto mt-4 sm:mt-8 relative group text-center">
             <motion.h3 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -131,26 +142,46 @@ export default function MenuPage() {
               Select A Category
             </motion.h3>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex overflow-x-auto no-scrollbar gap-2 sm:gap-3 justify-start lg:justify-center px-2 pb-6 -mx-4 sm:mx-0 snap-x"
-            >
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`snap-start shrink-0 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 ${
-                    selectedCategory === category.id
-                      ? 'bg-brand-darkGreen text-white shadow-[0_8px_20px_-6px_rgba(6,45,38,0.4)] transform -translate-y-1'
-                      : 'bg-white text-brand-darkGreen border border-brand-darkGreen/10 hover:bg-brand-orange/5 hover:border-brand-orange/30'
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </motion.div>
+            <div className="relative flex items-center justify-center">
+              {/* Left Scroll Arrow */}
+              <button 
+                onClick={() => scrollCategories('left')}
+                className="absolute left-0 z-10 hidden sm:flex items-center justify-center w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-md text-brand-darkGreen hover:text-brand-orange transition-all -translate-x-4 border border-gray-100 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-0"
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <motion.div 
+                ref={categoryScrollRef}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex overflow-x-auto no-scrollbar gap-2 sm:gap-3 justify-start lg:justify-center px-4 pb-6 w-full snap-x"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`snap-start shrink-0 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 ${
+                      selectedCategory === category.id
+                        ? 'bg-brand-darkGreen text-white shadow-[0_8px_20px_-6px_rgba(6,45,38,0.4)] transform -translate-y-1'
+                        : 'bg-white text-brand-darkGreen border border-brand-darkGreen/10 hover:bg-brand-orange/5 hover:border-brand-orange/30'
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </motion.div>
+
+              {/* Right Scroll Arrow */}
+              <button 
+                onClick={() => scrollCategories('right')}
+                className="absolute right-0 z-10 hidden sm:flex items-center justify-center w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-md text-brand-darkGreen hover:text-brand-orange transition-all translate-x-4 border border-gray-100 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-0"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
 
           {/* 4. UTILITY: SEARCH & FILTER (Lower Hierarchy) */}
