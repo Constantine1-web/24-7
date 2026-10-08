@@ -82,7 +82,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'burgers',
     price: 5500,
     description: 'Double beef smash patties, aged cheddar cheese, caramelized onions, house Suya aioli on toasted brioche.',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
+    image: '/images/uyo-burger.png',
     badge: 'MUST TRY',
     popular: false,
     prepTime: '15-20 mins',
