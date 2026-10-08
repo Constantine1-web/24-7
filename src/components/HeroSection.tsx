@@ -8,102 +8,133 @@ import { motion } from 'framer-motion';
 export default function HeroSection() {
   return (
     <div className="page-shell">
-      {/* Main Hero Section matching reference image pixel-for-pixel */}
+      {/* Main Hero Section */}
       <section className="hero" aria-labelledby="hero-title">
         
         {/* Left Hero Copy */}
         <div className="hero-copy relative z-10">
           <p className="eyebrow font-[850]">UYO’S #1 FAST-CASUAL SPOT</p>
           
-          <h1 id="hero-title">
-            <span>Cravings don’t</span>
-            <span>clock out.</span>
+          <h1 id="hero-title" className="flex flex-col">
+            <span>Cravings</span>
+            <span>don’t clock out.</span>
             <span className="accent">Neither do we.</span>
           </h1>
 
-          <p className="hero-description">
-            Juicy smash burgers, fiery Suya wings, proper Parfait and ice-cold Zobo fizz. Made fresh daily at 23 Ikpa Road, Uyo—and at your door in 30 minutes.
+          <p className="hero-description text-lg font-medium text-[#2d3834] max-w-lg mb-6">
+            Fresh burgers, Suya wings, parfaits and ice-cold Zobo, made daily in Uyo.
           </p>
 
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/menu">
-              <span>Order now</span>
-              <span className="arrow" aria-hidden="true">→</span>
-            </Link>
+          <div className="hero-actions mb-6">
+            <div className="flex flex-col items-start gap-2">
+              <div className="flex gap-4">
+                <Link className="button button-primary" href="/menu">
+                  <span>Order now</span>
+                  <span className="arrow" aria-hidden="true">→</span>
+                </Link>
 
-            <a className="button button-secondary" href="#snack-carousel">
-              Quick bites
-            </a>
+                <a className="button button-secondary" href="#snack-carousel">
+                  Quick bites
+                </a>
+              </div>
+              <span className="text-xs font-bold text-[#676a67] ml-2">Delivery & pickup available</span>
+            </div>
+          </div>
+
+          {/* Trust Row */}
+          <div className="flex items-center gap-2 text-sm font-semibold text-[#676a67]">
+            <div className="flex text-[#ffbd3e] tracking-widest text-lg">
+              ★★★★★
+            </div>
+            <span className="text-[#062d26] font-extrabold ml-1">4.9</span>
+            <span className="opacity-50">·</span>
+            <span>30 min delivery</span>
+            <span className="opacity-50">·</span>
+            <span>Fresh daily</span>
           </div>
         </div>
 
-        {/* Right Hero Art Promo Graphic - User Uploaded Asset */}
-        <div className="hero-art relative z-10" aria-label="30 percent off burger, fries and drink promotion">
+        {/* Right Hero Art Promo Graphic */}
+        <div className="hero-art relative z-10 flex items-center justify-center mt-12 md:mt-0 lg:-ml-12" aria-label="30 percent off burger, fries and drink promotion">
+          
+          {/* Subtle warm glow behind the food */}
+          <div className="absolute inset-0 bg-[#ffbd3e]/15 rounded-full blur-[80px] transform scale-110 -z-10 mix-blend-multiply"></div>
+
+          {/* 30% OFF Integrated Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: -20, rotate: -6 }}
+            animate={{ opacity: 1, y: 0, rotate: -6 }}
+            transition={{ delay: 0.3 }}
+            className="absolute -top-10 left-0 sm:left-4 z-20 flex flex-col items-center"
+          >
+            <div className="bg-[#bd3c0d] text-white font-black text-3xl px-5 py-2 rounded-xl shadow-2xl border-4 border-white">
+              30% OFF
+            </div>
+            <div className="text-[#bd3c0d] font-black text-2xl -mt-2 drop-shadow-md">↓</div>
+            <div className="bg-white/95 backdrop-blur-sm text-[#062d26] text-[9px] font-black tracking-widest px-3 py-1.5 rounded-full mt-1 shadow-lg uppercase border border-gray-100">
+              Today Only • Selected Combos
+            </div>
+          </motion.div>
+
+          {/* Main Hero Image */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full max-w-[650px] aspect-[4/3] rounded-[18px] overflow-hidden"
+            className="relative w-full max-w-[700px] aspect-[4/3] z-10"
           >
             <Image
               src="/images/hero-promo.png"
-              alt="30% off meal deal with a burger, fries and iced drink"
+              alt="Hero meal deal with a burger, fries and iced drink"
               fill
               priority
-              className="object-contain filter drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
+              className="object-contain filter drop-shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
             />
+          </motion.div>
+
+          {/* Floating Delivery Badge */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5 }}
+            className="absolute bottom-8 right-0 md:-right-8 z-20 bg-white rounded-2xl p-3 pr-5 shadow-2xl border border-gray-100 flex items-center gap-3"
+          >
+            <div className="w-11 h-11 rounded-full bg-[#ffbd3e]/20 flex items-center justify-center text-xl shadow-inner">
+              ⚡
+            </div>
+            <div className="flex flex-col">
+              <span className="font-black text-[#062d26] text-sm uppercase tracking-wide leading-none mb-1">Fast Delivery</span>
+              <span className="font-bold text-[#bd3c0d] text-[11px] uppercase tracking-wider leading-none">Under 30 mins</span>
+            </div>
           </motion.div>
         </div>
 
       </section>
 
-      {/* Trust Bar Section matching reference image pixel-for-pixel */}
-      <section className="trust-bar" aria-label="Delivery and service highlights">
-        
-        {/* 1. 24/7 Open */}
-        <div className="trust-item">
-          <span className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </span>
-          <span className="trust-copy">
-            <strong>24/7 Open</strong>
-            <span>Always cooking, day or night</span>
-          </span>
+      {/* Peeking Next Section (Replaces the old trust-bar) */}
+      <section className="mt-8 pt-8 border-t border-gray-200/50 relative overflow-hidden" aria-label="Popular right now preview">
+        <div className="flex items-center justify-between mb-5 px-2">
+          <h3 className="font-display font-bold text-lg uppercase tracking-wider text-[#062d26]">Popular right now</h3>
+          <Link href="/menu" className="text-xs font-bold text-[#bd3c0d] uppercase hover:underline">View menu →</Link>
         </div>
-
-        {/* 2. 30 min ETA */}
-        <div className="trust-item">
-          <span className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="6" cy="17" r="2.3"/>
-              <circle cx="18" cy="17" r="2.3"/>
-              <path d="M8.5 17h5.2l-2.5-6H7.8L6 14.7m7.7.1 2-7h3l1.1 4.5H13m-4.2-3.3L7.5 6H4"/>
-            </svg>
-          </span>
-          <span className="trust-copy">
-            <strong>30 min ETA</strong>
-            <span>Hot and fresh to your door</span>
-          </span>
+        {/* We fix the height here so it intentionally cuts off and "peeks" to tempt scrolling */}
+        <div 
+          className="flex gap-4 overflow-hidden h-[130px] px-2"
+          style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }}
+        >
+          {[
+            { id: 1, name: 'Loaded Beef Shawarma', image: '/images/loaded-shawarma.png' },
+            { id: 2, name: 'Pepperoni Pizza Slice', image: '/images/pepperoni-pizza-slice.png' },
+            { id: 3, name: 'Spicy Suya Wings', image: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=400&q=80' }
+          ].map(item => (
+            <div key={item.id} className="min-w-[220px] w-[220px] bg-white/80 rounded-t-2xl shadow-sm border border-gray-100 p-3 flex flex-col gap-3">
+              <div className="w-full h-[70px] bg-gray-100 rounded-xl relative overflow-hidden flex-shrink-0">
+                <Image src={item.image} alt={item.name} fill className="object-cover" />
+              </div>
+              <div className="font-bold text-xs text-[#062d26] uppercase tracking-wide line-clamp-1">{item.name}</div>
+            </div>
+          ))}
         </div>
-
-        {/* 3. No middleman */}
-        <div className="trust-item">
-          <span className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="9" cy="8" r="3"/>
-              <circle cx="17" cy="9" r="2.5"/>
-              <path d="M3.5 19c.2-3.4 2.4-5.2 5.5-5.2s5.4 1.8 5.6 5.2M15 14.2c2.9-.2 5.2 1.4 5.5 4.2"/>
-            </svg>
-          </span>
-          <span className="trust-copy">
-            <strong>No middleman</strong>
-            <span>Ordered direct from our kitchen</span>
-          </span>
-        </div>
-
       </section>
     </div>
   );
