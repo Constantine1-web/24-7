@@ -199,9 +199,9 @@ export default function SnackCarousel() {
                   }}
                   onClick={() => setActiveIndex(index)}
                   style={{ zIndex }}
-                  className={`absolute w-[210px] sm:w-[250px] h-[310px] sm:h-[380px] rounded-[28px] p-5 flex flex-col justify-between cursor-pointer backdrop-blur-md transition-all duration-300 ${
+                  className={`absolute w-[210px] sm:w-[250px] h-[310px] sm:h-[380px] rounded-[28px] p-5 flex flex-col justify-between cursor-pointer backdrop-blur-md ${
                     isActive
-                      ? 'bg-[#E85D04]/90 text-white border border-white/40 shadow-[0_16px_36px_rgba(232,93,4,0.38),inset_0_1.5px_1px_rgba(255,255,255,0.45)]'
+                      ? 'bg-[#E85D04]/80 text-white border border-white/40 shadow-[0_16px_36px_rgba(232,93,4,0.38),inset_0_1.5px_1px_rgba(255,255,255,0.45)]'
                       : 'bg-[#F4DDCB]/80 text-[#3D1E12] border border-white/50 shadow-[0_8px_24px_rgba(61,30,18,0.08),inset_0_1px_1px_rgba(255,255,255,0.65)] hover:bg-[#F4DDCB]/90 hover:shadow-[0_10px_28px_rgba(61,30,18,0.12)]'
                   }`}
                 >
