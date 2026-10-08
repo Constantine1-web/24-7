@@ -281,7 +281,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'desserts',
     price: 2500,
     description: 'Warm fluffy Nigerian puff-puff balls drizzled with rich hazelnut Nutella chocolate and crushed peanuts.',
-    image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80',
+    image: '/images/nutella-puff-puff.jpg',
     badge: 'SWEET TREAT',
     popular: true,
     prepTime: '10 mins',
