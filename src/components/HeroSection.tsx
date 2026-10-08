@@ -7,9 +7,9 @@ import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
-    <div className="page-shell w-full max-w-full overflow-hidden">
+    <div className="page-shell w-full max-w-full">
       {/* Main Hero Section */}
-      <section className="hero w-full max-w-full" aria-labelledby="hero-title">
+      <section className="hero w-full max-w-full overflow-visible" aria-labelledby="hero-title">
         
         {/* Left Hero Copy */}
         <div className="hero-copy relative z-10 w-full max-w-full">
@@ -55,28 +55,12 @@ export default function HeroSection() {
         </div>
 
         {/* Right Hero Art Promo Graphic */}
-        <div className="hero-art relative z-10 flex items-center justify-center mt-8 sm:mt-12 lg:mt-0 w-full max-w-full overflow-hidden" aria-label="30 percent off burger, fries and drink promotion">
+        <div className="hero-art relative z-10 flex items-center justify-center mt-6 sm:mt-10 lg:mt-0 w-full max-w-full overflow-visible" aria-label="30 percent off burger, fries and drink promotion">
           
           {/* Subtle warm glow behind the food */}
-          <div className="absolute inset-0 bg-[#ffbd3e]/15 rounded-full blur-[80px] transform scale-105 -z-10 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-[#ffbd3e]/15 rounded-full blur-[80px] transform scale-105 -z-10 mix-blend-multiply pointer-events-none"></div>
 
-          {/* 30% OFF Integrated Badge */}
-          <motion.div 
-            initial={{ opacity: 0, y: -20, rotate: -6 }}
-            animate={{ opacity: 1, y: 0, rotate: -6 }}
-            transition={{ delay: 0.3 }}
-            className="absolute top-0 lg:-top-6 right-2 sm:right-4 lg:right-auto lg:left-4 z-20 flex flex-col items-center scale-75 sm:scale-90 lg:scale-100 origin-top-right lg:origin-top-left"
-          >
-            <div className="bg-[#bd3c0d] text-white font-black text-2xl sm:text-3xl px-4 sm:px-5 py-1.5 sm:py-2 rounded-xl shadow-2xl border-4 border-white">
-              30% OFF
-            </div>
-            <div className="text-[#bd3c0d] font-black text-xl sm:text-2xl -mt-2 drop-shadow-md">▼</div>
-            <div className="bg-white/95 backdrop-blur-sm text-[#062d26] text-[8px] sm:text-[9px] font-black tracking-widest px-3 py-1.5 rounded-full mt-1 shadow-lg uppercase border border-gray-100 whitespace-nowrap">
-              Today Only • Selected Combos
-            </div>
-          </motion.div>
-
-          {/* Main Hero Image */}
+          {/* Main Hero Image with Integrated 3D 30% OFF Artwork */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -85,7 +69,7 @@ export default function HeroSection() {
           >
             <Image
               src="/images/hero-promo.png"
-              alt="Hero meal deal with a burger, fries and iced drink"
+              alt="Hero meal deal with a burger, fries and iced drink with 30 percent off promotion"
               fill
               priority
               className="object-contain filter drop-shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
@@ -96,10 +80,10 @@ export default function HeroSection() {
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 }}
-            className="absolute bottom-2 sm:bottom-4 lg:bottom-8 right-2 sm:right-4 z-20 bg-white rounded-2xl p-2 sm:p-2.5 lg:p-3 pr-3.5 sm:pr-4 lg:pr-5 shadow-2xl border border-gray-100 flex items-center gap-2 lg:gap-3 scale-75 sm:scale-90 lg:scale-100 origin-bottom-right"
+            transition={{ delay: 0.4 }}
+            className="absolute bottom-2 sm:bottom-4 lg:bottom-6 right-2 sm:right-4 lg:right-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2 sm:p-2.5 lg:p-3 pr-3.5 sm:pr-4 lg:pr-5 shadow-2xl border border-gray-100/80 flex items-center gap-2 lg:gap-3 scale-75 sm:scale-90 lg:scale-100 origin-bottom-right"
           >
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#ffbd3e]/20 flex items-center justify-center text-lg sm:text-xl shadow-inner flex-shrink-0">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#ffbd3e]/20 flex items-center justify-center text-lg sm:text-xl shadow-inner flex-shrink-0 text-brand-orange">
               ⚡
             </div>
             <div className="flex flex-col">

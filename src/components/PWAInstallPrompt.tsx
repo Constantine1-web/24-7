@@ -138,11 +138,11 @@ export default function PWAInstallPrompt() {
       <AnimatePresence>
         {showPrompt && !isStandalone && (
           <motion.div
-            initial={{ y: 120, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 120, opacity: 0 }}
-            transition={{ type: 'spring', damping: 24, stiffness: 220 }}
-            className="fixed bottom-24 md:bottom-6 left-3 right-3 sm:left-6 sm:right-6 md:left-auto md:right-6 md:w-[400px] z-45 bg-[#062D26] text-white p-4 sm:p-5 rounded-3xl shadow-2xl border-2 border-[#FFBD3E]/60 backdrop-blur-xl"
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="fixed bottom-24 md:bottom-auto md:top-24 left-3 right-3 sm:left-6 sm:right-6 md:left-auto md:right-8 md:w-[380px] z-45 bg-[#062D26] text-white p-4 sm:p-5 rounded-3xl shadow-2xl border-2 border-[#FFBD3E]/60 backdrop-blur-xl"
           >
             <button
               onClick={handleDismiss}
