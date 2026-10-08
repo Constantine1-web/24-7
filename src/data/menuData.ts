@@ -253,11 +253,11 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: 'zobo-hibiscus-sparkler',
-    name: 'Zobo Hibiscus Fizz (Craft Soda)',
+    name: 'Chocolate Smoothie',
     category: 'drinks',
     price: 2000,
     description: 'House-brewed Nigerian Zobo (organic hibiscus leaves, ginger, pineapple skin, cloves) topped with sparkling water & lime.',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
+    image: '/images/chocolate-smoothie.png',
     badge: 'REFRESHING',
     popular: true,
     prepTime: '5 mins',

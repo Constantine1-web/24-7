@@ -116,7 +116,7 @@ export default function MenuPage() {
 
             {/* Top Right: Refreshing Drink */}
             <div className="absolute z-10 right-[15%] sm:right-[22%] lg:right-[26%] top-[5%] sm:top-0 w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[180px] lg:h-[180px] rounded-full border-[4px] border-white shadow-[0_10px_30px_-10px_rgba(6,45,38,0.15)] overflow-hidden">
-              <Image src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Cold Drink" fill className="object-cover" />
+              <Image src="/images/chocolate-smoothie.png" alt="Cold Drink" fill className="object-cover" />
             </div>
           </motion.div>
 
