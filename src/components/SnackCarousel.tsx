@@ -75,7 +75,7 @@ const SNACK_ATTACK_ITEMS: MenuItem[] = [
     category: 'pizza',
     price: 3500,
     description: 'Cheesy pepperoni pizza slice with spicy tomato sauce & Suya herbs.',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+    image: '/images/pepperoni-pizza-slice.png',
     prepTime: '8-10 mins',
     calories: '520 kcal',
     popular: true,
