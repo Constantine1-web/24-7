@@ -107,7 +107,7 @@ export default function MenuPage() {
             
             {/* Center Dominant: Burger */}
             <div className="absolute z-30 left-1/2 top-1/2 -translate-x-1/2 -translate-y-[45%] sm:-translate-y-1/2 w-[220px] h-[220px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px] rounded-full border-[6px] sm:border-[8px] border-white shadow-[0_20px_50px_-12px_rgba(6,45,38,0.25)] overflow-hidden transition-transform duration-700 hover:scale-[1.02]">
-              <Image src="/images/uyo-burger.png" alt="Smash Burger" fill className="object-cover" />
+              <Image src="/images/shawarma-new.png" alt="Loaded Shawarma" fill className="object-cover" />
             </div>
 
             {/* Top Left: Crispy Chicken / Wings */}
@@ -117,7 +117,7 @@ export default function MenuPage() {
 
             {/* Bottom Right: Loaded Fries */}
             <div className="absolute z-20 right-[5%] sm:right-[10%] lg:right-[15%] bottom-[15%] sm:bottom-[10%] lg:bottom-[8%] w-[150px] h-[150px] sm:w-[220px] sm:h-[220px] lg:w-[260px] lg:h-[260px] rounded-full border-[4px] sm:border-[6px] border-white shadow-[0_15px_40px_-10px_rgba(6,45,38,0.2)] overflow-hidden">
-              <Image src="/images/shawarma-hero.png" alt="Shawarma" fill className="object-cover" />
+              <Image src="/images/uyo-burger.png" alt="Smash Burger" fill className="object-cover" />
             </div>
 
             {/* Bottom Left: Pastry / Dessert */}
