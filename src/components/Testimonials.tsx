@@ -15,17 +15,17 @@ export default function Testimonials() {
       location: 'University of Uyo District',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-      tag: 'VERIFIED FOODIE',
+      tag: 'VERIFIED CUSTOMER',
     },
     {
       id: 2,
       quote:
-        'I added 24/7 Flavours directly to my phone home screen. It literally feels like an app! Their Afang soup supreme and cold Zobo sparkler are my late-night order go-to.',
+        'I added 24/7 Flavours directly to my phone home screen. It literally feels like an app! Their Loaded Milkshakes and cold Zobo sparkler are my late-night order go-to.',
       name: 'Kufre-Abasi Effiong',
       location: 'Ewet Housing Estate, Uyo',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-      tag: 'PWA APP USER',
+      tag: 'VERIFIED CUSTOMER',
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ export default function Testimonials() {
       location: 'Wellington Bassey Way',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
-      tag: 'REGULAR CUSTOMER',
+      tag: 'VERIFIED CUSTOMER',
     },
   ];
 
@@ -52,78 +52,79 @@ export default function Testimonials() {
   const current = reviews[currentIdx];
 
   return (
-    <section className="py-20 bg-brand-orange text-white relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-brand-orange text-white relative overflow-hidden">
       {/* Decorative Brand Texture */}
       <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-screen" style={{ backgroundImage: "url('/images/food-doodles-core.png')", backgroundRepeat: 'repeat', backgroundSize: '240px', filter: 'invert(1)' }} />
-
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
         {/* Editorial Section Label */}
-        <span className="text-xs font-extrabold tracking-widest uppercase bg-white/20 px-4 py-1.5 rounded-full inline-block mb-4 text-white">
+        <span className="text-[10px] sm:text-xs font-black tracking-widest uppercase bg-white/20 px-4 py-1.5 rounded-full inline-block mb-4 text-white shadow-sm border border-white/10">
           WHAT OUR CUSTOMERS SAY
         </span>
 
-        <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-white mb-10">
+        <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-white mb-8 sm:mb-10">
           UYO'S MOST LOVED KITCHEN
         </h2>
 
         {/* Testimonial Card Display */}
-        <div className="relative bg-brand-darkBrown/90 text-brand-parchment p-8 sm:p-12 rounded-3xl shadow-card-elevated max-w-3xl mx-auto border border-white/10 backdrop-blur-md">
-          <Quote size={48} className="text-brand-yellow/30 mx-auto mb-4" />
+        <div className="relative bg-brand-darkBrown/95 text-brand-parchment px-4 py-8 sm:p-10 rounded-3xl shadow-2xl max-w-3xl mx-auto border border-white/15 backdrop-blur-xl">
+          <Quote size={40} className="text-brand-yellow/40 mx-auto mb-4 absolute top-6 left-1/2 -translate-x-1/2 sm:static sm:translate-x-0" />
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-6"
-            >
-              {/* Rating Stars */}
-              <div className="flex justify-center space-x-1 text-brand-yellow">
-                {[...Array(current.rating)].map((_, i) => (
-                  <Star key={i} size={20} className="fill-brand-yellow" />
-                ))}
-              </div>
-
-              {/* Quote text */}
-              <p className="font-sans text-lg sm:text-xl text-brand-parchment font-medium italic leading-relaxed">
-                "{current.quote}"
-              </p>
-
-              {/* Customer details */}
-              <div className="pt-4 border-t border-white/10 flex flex-col items-center">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-brand-yellow mb-2 shadow-md">
-                  <Image
-                    src={current.avatar}
-                    alt={current.name}
-                    fill
-                    className="object-cover"
-                  />
+          <div className="min-h-[300px] sm:min-h-[260px] flex flex-col justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.id}
+                initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="space-y-6 pt-6 sm:pt-0"
+              >
+                {/* Rating Stars */}
+                <div className="flex justify-center space-x-1.5 text-brand-yellow drop-shadow-sm">
+                  {[...Array(current.rating)].map((_, i) => (
+                    <Star key={i} size={24} className="fill-brand-yellow text-brand-yellow" />
+                  ))}
                 </div>
-                <h4 className="font-display text-xl uppercase tracking-tight text-brand-yellow">
-                  {current.name}
-                </h4>
-                <p className="text-xs text-gray-300 font-semibold">{current.location}</p>
 
-                <span className="mt-2 inline-flex items-center space-x-1 text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full uppercase">
-                  <CheckCircle size={12} />
-                  <span>{current.tag}</span>
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                {/* Quote text */}
+                <p className="font-serif text-xl sm:text-2xl text-white font-bold italic leading-snug sm:leading-relaxed max-w-2xl mx-auto px-2 sm:px-0">
+                  "{current.quote}"
+                </p>
+
+                {/* Customer details */}
+                <div className="pt-6 flex flex-col items-center">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 sm:border-4 border-brand-yellow mb-3 shadow-[0_4px_12px_rgba(255,200,50,0.3)]">
+                    <Image
+                      src={current.avatar}
+                      alt={current.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <h4 className="font-display text-lg sm:text-xl uppercase tracking-tight text-brand-yellow">
+                    {current.name}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-300 font-semibold mb-2">{current.location}</p>
+
+                  <span className="inline-flex items-center space-x-1.5 text-[10px] sm:text-xs font-black bg-brand-green/20 text-brand-green px-3 py-1 rounded-full uppercase border border-brand-green/30">
+                    <CheckCircle size={14} />
+                    <span>{current.tag}</span>
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           {/* Carousel Controls */}
-          <div className="flex justify-between items-center mt-8 pt-4 border-t border-white/10">
+          <div className="flex justify-between items-center mt-6 pt-4 sm:mt-8 sm:pt-6 border-t border-white/10">
             <button
               onClick={handlePrev}
               aria-label="Previous Testimonial"
-              className="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-full transition-colors"
+              className="bg-brand-yellow text-brand-darkBrown hover:bg-brand-parchment hover:scale-105 p-3 rounded-full transition-all shadow-md"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={20} strokeWidth={2.5} />
             </button>
 
             <div className="flex space-x-2">
@@ -131,8 +132,8 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setCurrentIdx(i)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    i === currentIdx ? 'bg-brand-yellow w-6' : 'bg-white/30'
+                  className={`h-2.5 sm:h-3 rounded-full transition-all ${
+                    i === currentIdx ? 'bg-brand-yellow w-8 sm:w-10' : 'bg-white/30 w-2.5 sm:w-3 hover:bg-white/50'
                   }`}
                 />
               ))}
@@ -141,30 +142,30 @@ export default function Testimonials() {
             <button
               onClick={handleNext}
               aria-label="Next Testimonial"
-              className="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-full transition-colors"
+              className="bg-brand-yellow text-brand-darkBrown hover:bg-brand-parchment hover:scale-105 p-3 rounded-full transition-all shadow-md"
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={20} strokeWidth={2.5} />
             </button>
           </div>
         </div>
 
         {/* Press Badges & Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto pt-8 border-t border-white/20 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 sm:mt-16 max-w-4xl mx-auto pt-8 border-t border-white/20 text-center">
           <div>
-            <div className="font-display text-2xl sm:text-3xl text-brand-yellow">15,000+</div>
-            <div className="text-xs text-white/80 uppercase font-semibold">Orders Delivered</div>
+            <div className="font-display text-3xl sm:text-4xl text-brand-yellow drop-shadow-sm">15K+</div>
+            <div className="text-[10px] sm:text-xs text-white/90 uppercase font-black tracking-widest mt-1">Orders Delivered</div>
           </div>
           <div>
-            <div className="font-display text-2xl sm:text-3xl text-brand-yellow">4.9 / 5.0</div>
-            <div className="text-xs text-white/80 uppercase font-semibold">Customer Rating</div>
+            <div className="font-display text-3xl sm:text-4xl text-brand-yellow drop-shadow-sm">4.9</div>
+            <div className="text-[10px] sm:text-xs text-white/90 uppercase font-black tracking-widest mt-1">Customer Rating</div>
           </div>
           <div>
-            <div className="font-display text-2xl sm:text-3xl text-brand-yellow">24 HOURS</div>
-            <div className="text-xs text-white/80 uppercase font-semibold">Daily Service</div>
+            <div className="font-display text-3xl sm:text-4xl text-brand-yellow drop-shadow-sm">24/7</div>
+            <div className="text-[10px] sm:text-xs text-white/90 uppercase font-black tracking-widest mt-1">Daily Service</div>
           </div>
           <div>
-            <div className="font-display text-2xl sm:text-3xl text-brand-yellow">UYO, NIGERIA</div>
-            <div className="text-xs text-white/80 uppercase font-semibold">23 Ikpa Road</div>
+            <div className="font-display text-3xl sm:text-4xl text-brand-yellow drop-shadow-sm">UYO</div>
+            <div className="text-[10px] sm:text-xs text-white/90 uppercase font-black tracking-widest mt-1">23 Ikpa Road</div>
           </div>
         </div>
 
