@@ -266,11 +266,11 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: 'palm-wine-mocktail',
-    name: 'Uyo Palm Wine & Mango Cooler',
+    name: 'Strawberry & Banana Smoothie',
     category: 'drinks',
     price: 3000,
     description: 'Fresh sweet palm wine extract blended with local mango nectar, crushed ice and mint leaves.',
-    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+    image: '/images/strawberry-smoothie.png',
     prepTime: '5 mins',
     calories: '180 kcal',
     available: true,
