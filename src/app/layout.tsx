@@ -7,7 +7,6 @@ import StickyMobileCart from '@/components/StickyMobileCart';
 import CartDrawer from '@/components/CartDrawer';
 import ProductModal from '@/components/ProductModal';
 import PWAInstallPrompt from '@/components/PWAInstallPrompt';
-import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: '24/7 Flavours | Uyo Urban Kitchen & App',
@@ -55,18 +54,16 @@ export default function RootLayout({
           <div className="global-texture-circle-2"></div>
         </div>
 
-        <ThemeProvider>
-          <OrderProvider>
-            <CartProvider>
-              <Header />
-              <main className="flex-grow">{children}</main>
-              <CartDrawer />
-              <ProductModal />
-              <StickyMobileCart />
-              <PWAInstallPrompt />
-            </CartProvider>
-          </OrderProvider>
-        </ThemeProvider>
+        <OrderProvider>
+          <CartProvider>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <CartDrawer />
+            <ProductModal />
+            <StickyMobileCart />
+            <PWAInstallPrompt />
+          </CartProvider>
+        </OrderProvider>
         
         {/* Service Worker Registration */}
         <script

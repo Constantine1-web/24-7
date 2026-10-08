@@ -4,21 +4,14 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
-import { useTheme } from 'next-themes';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Menu, X, Moon, Sun } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const pathname = usePathname();
   const { cart, setIsCartOpen } = useCart();
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -30,13 +23,13 @@ export default function Header() {
   ];
 
   return (
-    <header className="px-[var(--gutter)] py-4 min-h-[91px] flex items-center justify-between gap-4 border-b-[1.5px] border-[rgba(6,45,38,0.12)] dark:border-[rgba(255,250,243,0.1)] bg-[#fffaf3]/85 dark:bg-[#08140f]/85 backdrop-blur-md relative z-40 shadow-sm transition-colors duration-300">
+    <header className="px-[var(--gutter)] py-4 min-h-[91px] flex items-center justify-between gap-4 border-b-[1.5px] border-[rgba(6,45,38,0.12)] bg-[#fffaf3]/85 backdrop-blur-md relative z-40 shadow-sm">
       
       {/* Brand Logo & Tagline */}
       <Link className="flex items-center gap-3 w-fit flex-shrink-0" href="/" aria-label="24/7 Flavours home">
         <span className="brand-mark font-display">24</span>
         <span className="brand-copy flex flex-col gap-0.5">
-          <span className="brand-name font-display text-[clamp(17px,1.9vw,25px)] text-[#062d26] dark:text-brand-parchment leading-none tracking-tight transition-colors">
+          <span className="brand-name font-display text-[clamp(17px,1.9vw,25px)] text-[#062d26] leading-none tracking-tight">
             24/7 FLAVOURS
           </span>
           <span className="brand-tagline text-[9px] font-extrabold text-[#bd3c0d] tracking-[2.4px]">
@@ -54,8 +47,8 @@ export default function Header() {
               key={link.name}
               href={link.href}
               aria-current={isActive ? 'page' : undefined}
-              className={`relative py-2.5 text-[13px] font-semibold tracking-tight transition-colors hover:text-[#bd3c0d] dark:hover:text-[#ff7b24] ${
-                isActive ? 'text-[#062d26] dark:text-brand-parchment font-bold' : 'text-[#303c38] dark:text-[#a3a8a5]'
+              className={`relative py-2.5 text-[13px] font-semibold tracking-tight transition-colors hover:text-[#bd3c0d] ${
+                isActive ? 'text-[#062d26] font-bold' : 'text-[#303c38]'
               }`}
             >
               {link.name}
@@ -71,21 +64,11 @@ export default function Header() {
       </nav>
 
       {/* Header Actions (Search & Cart Button) */}
-      <div className="header-actions flex items-center justify-end gap-1 sm:gap-3">
-        {mounted && (
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle Dark Mode"
-            className="p-2 sm:p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-[#062d26] dark:text-brand-parchment transition-colors"
-          >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-        )}
-
+      <div className="header-actions flex items-center justify-end gap-3">
         <button
           onClick={() => setSearchOpen(!searchOpen)}
           aria-label="Search Menu"
-          className="p-2 sm:p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-[#062d26] dark:text-brand-parchment transition-colors"
+          className="p-2.5 rounded-full hover:bg-black/5 text-[#062d26] transition-colors"
         >
           <Search size={18} />
         </button>

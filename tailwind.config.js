@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,18 +9,18 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          green: "var(--brand-green)",
-          darkGreen: "var(--brand-darkGreen)",
-          lightGreen: "var(--brand-lightGreen)",
-          parchment: "var(--brand-parchment)",
-          parchmentDark: "var(--brand-parchmentDark)",
-          orange: "var(--brand-orange)",
-          orangeHover: "var(--brand-orangeHover)",
-          yellow: "var(--brand-yellow)",
-          yellowLight: "var(--brand-yellowLight)",
-          darkBrown: "var(--brand-darkBrown)",
-          creamCard: "var(--brand-creamCard)",
-          charcoal: "var(--brand-charcoal)",
+          green: "#14382B",
+          darkGreen: "#0D251C",
+          lightGreen: "#1D4E3D",
+          parchment: "#FBF7EE",
+          parchmentDark: "#F2EADB",
+          orange: "#E85D04",
+          orangeHover: "#DC5200",
+          yellow: "#FFB703",
+          yellowLight: "#FFC533",
+          darkBrown: "#2A1E17",
+          creamCard: "#F3ECE0",
+          charcoal: "#1A1A1A",
         },
       },
       fontFamily: {
