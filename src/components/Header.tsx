@@ -23,10 +23,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="site-header px-[var(--gutter)] relative z-40">
+    <header className="px-[var(--gutter)] py-4 min-h-[91px] flex items-center justify-between gap-4 border-b-[1.5px] border-[rgba(6,45,38,0.12)] bg-[#fffaf3] relative z-40 shadow-sm" style={{ backgroundImage: "linear-gradient(rgba(255, 250, 243, 0.82), rgba(255, 250, 243, 0.82)), url('/images/food-doodles-bg.png')", backgroundRepeat: 'repeat', backgroundSize: '260px 260px' }}>
       
       {/* Brand Logo & Tagline */}
-      <Link className="brand inline-flex items-center gap-3 w-fit" href="/" aria-label="24/7 Flavours home">
+      <Link className="flex items-center gap-3 w-fit flex-shrink-0" href="/" aria-label="24/7 Flavours home">
         <span className="brand-mark font-display">24</span>
         <span className="brand-copy flex flex-col gap-0.5">
           <span className="brand-name font-display text-[clamp(17px,1.9vw,25px)] text-[#062d26] leading-none tracking-tight">
@@ -39,7 +39,7 @@ export default function Header() {
       </Link>
 
       {/* Main Navigation Links */}
-      <nav className="main-nav hidden md:flex items-center justify-center gap-[clamp(18px,3.2vw,48px)]" aria-label="Main navigation">
+      <nav className="hidden lg:flex items-center justify-center gap-4 xl:gap-8" aria-label="Main navigation">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
@@ -98,7 +98,7 @@ export default function Header() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-[#062d26] rounded-lg hover:bg-black/5"
+          className="lg:hidden p-2 text-[#062d26] rounded-lg hover:bg-black/5"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -141,7 +141,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#fffaf3] border-b border-[var(--line)] px-6 py-6 space-y-3 shadow-xl z-30"
+            className="lg:hidden absolute top-full left-0 right-0 bg-[#fffaf3] border-b border-[var(--line)] px-6 py-6 space-y-3 shadow-xl z-30"
           >
             {navLinks.map((link) => (
               <Link

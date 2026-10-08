@@ -42,14 +42,16 @@ export default function HeroSection() {
           </div>
 
           {/* Trust Row */}
-          <div className="flex items-center gap-2 text-sm font-semibold text-[#676a67]">
-            <div className="flex text-[#ffbd3e] tracking-widest text-lg">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-semibold text-[#676a67]">
+            <div className="flex text-[#ffbd3e] tracking-widest text-base sm:text-lg">
               ★★★★★
             </div>
-            <span className="text-[#062d26] font-extrabold ml-1">4.9</span>
-            <span className="opacity-50">·</span>
+            <span className="text-[#062d26] font-extrabold ml-0.5 sm:ml-1">4.9</span>
+            <span className="opacity-50 hidden sm:inline">·</span>
+            <span className="opacity-50 sm:hidden">|</span>
             <span>30 min delivery</span>
-            <span className="opacity-50">·</span>
+            <span className="opacity-50 hidden sm:inline">·</span>
+            <span className="opacity-50 sm:hidden">|</span>
             <span>Fresh daily</span>
           </div>
         </div>
@@ -65,7 +67,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: -20, rotate: -6 }}
             animate={{ opacity: 1, y: 0, rotate: -6 }}
             transition={{ delay: 0.3 }}
-            className="absolute -top-10 left-0 sm:left-4 z-20 flex flex-col items-center"
+            className="absolute -top-6 lg:-top-10 right-2 lg:right-auto lg:left-4 z-20 flex flex-col items-center scale-75 md:scale-90 lg:scale-100 origin-top-right lg:origin-top-left"
           >
             <div className="bg-[#bd3c0d] text-white font-black text-3xl px-5 py-2 rounded-xl shadow-2xl border-4 border-white">
               30% OFF
@@ -97,7 +99,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="absolute bottom-8 right-0 md:-right-8 z-20 bg-white rounded-2xl p-3 pr-5 shadow-2xl border border-gray-100 flex items-center gap-3"
+            className="absolute bottom-4 lg:bottom-8 right-2 md:-right-8 z-20 bg-white rounded-2xl p-2 lg:p-3 pr-4 lg:pr-5 shadow-2xl border border-gray-100 flex items-center gap-2 lg:gap-3 scale-75 md:scale-90 lg:scale-100 origin-bottom-right"
           >
             <div className="w-11 h-11 rounded-full bg-[#ffbd3e]/20 flex items-center justify-center text-xl shadow-inner">
               ⚡
