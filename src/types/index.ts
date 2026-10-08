@@ -1,4 +1,4 @@
-export type CategoryId = 'all' | 'burgers' | 'mains' | 'snacks' | 'pizza' | 'chicken' | 'drinks' | 'desserts';
+export type CategoryId = 'all' | 'burgers' | 'mains' | 'snacks' | 'pizza' | 'chicken' | 'drinks' | 'desserts' | 'pastries' | 'fries' | string;
 
 export interface MenuItem {
   id: string;
