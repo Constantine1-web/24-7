@@ -8,13 +8,84 @@ import { useCart } from '@/context/CartContext';
 import { MENU_ITEMS } from '@/data/menuData';
 import { MenuItem } from '@/types';
 
+const SNACK_ATTACK_ITEMS: MenuItem[] = [
+  {
+    id: 'small-chops-combo',
+    name: 'Nigerian Small Chops',
+    category: 'snacks',
+    price: 3500,
+    description: 'Crispy samosas, mini spring rolls, peppered gizzard & golden puff-puff platter.',
+    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
+    prepTime: '10 mins',
+    calories: '480 kcal',
+    popular: true,
+    available: true,
+  },
+  {
+    id: 'crispy-corn-dogs',
+    name: 'Crispy Cheese Corndogs',
+    category: 'snacks',
+    price: 3000,
+    description: 'Golden fried cornmeal-battered sausages drizzled with mustard & spicy ketchup.',
+    image: 'https://images.unsplash.com/photo-1619740455993-9e612b1af08a?auto=format&fit=crop&w=800&q=80',
+    prepTime: '8-10 mins',
+    calories: '420 kcal',
+    popular: true,
+    available: true,
+  },
+  {
+    id: 'suya-chicken-wings-snack',
+    name: 'Spicy Suya Chicken Wings',
+    category: 'chicken',
+    price: 4500,
+    description: 'Char-grilled jumbo chicken wings tossed in fiery Northern Yaji spice rub.',
+    image: 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=800&q=80',
+    prepTime: '12-15 mins',
+    calories: '560 kcal',
+    popular: true,
+    available: true,
+  },
+  {
+    id: 'flaky-sausage-rolls',
+    name: 'Flaky Golden Sausage Rolls',
+    category: 'snacks',
+    price: 2000,
+    description: 'Warm flaky puff pastry stuffed with seasoned savory beef sausage.',
+    image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80',
+    prepTime: '5-8 mins',
+    calories: '380 kcal',
+    popular: true,
+    available: true,
+  },
+  {
+    id: 'savory-chicken-pie',
+    name: 'Golden Chicken Pies',
+    category: 'snacks',
+    price: 2500,
+    description: 'Golden shortcrust pastry filled with tender shredded chicken, potatoes & sweet carrots.',
+    image: 'https://images.unsplash.com/photo-1572383672419-ab35444a6934?auto=format&fit=crop&w=800&q=80',
+    prepTime: '8-10 mins',
+    calories: '440 kcal',
+    popular: true,
+    available: true,
+  },
+  {
+    id: 'pepperoni-pizza-slice-snack',
+    name: 'Pepperoni Pizza Slices',
+    category: 'pizza',
+    price: 3500,
+    description: 'Cheesy pepperoni pizza slice with spicy tomato sauce & Suya herbs.',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+    prepTime: '8-10 mins',
+    calories: '520 kcal',
+    popular: true,
+    available: true,
+  },
+];
+
 export default function SnackCarousel() {
   const { addToCart } = useCart();
-  
-  // Filter quick bites & snacks list
-  const snacksList = MENU_ITEMS.filter(
-    (item) => item.category === 'burgers' || item.category === 'snacks' || item.category === 'drinks'
-  );
+  const snacksList = SNACK_ATTACK_ITEMS;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -25,7 +96,7 @@ export default function SnackCarousel() {
     if (isPaused) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % snacksList.length);
-    }, 2600);
+    }, 2800);
     return () => clearInterval(interval);
   }, [isPaused, snacksList.length]);
 
@@ -43,6 +114,8 @@ export default function SnackCarousel() {
     setTimeout(() => setAddedToast(null), 2000);
   };
 
+  const activeSnack = snacksList[activeIndex];
+
   return (
     <section
       id="snack-carousel"
@@ -58,7 +131,7 @@ export default function SnackCarousel() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header matching Image 1 */}
-        <div className="text-center max-w-xl mx-auto mb-10">
+        <div className="text-center max-w-xl mx-auto mb-8">
           <div className="inline-flex items-center space-x-2 bg-[#FCE3CF] text-[#E85D04] px-4 py-1.5 rounded-full text-xs font-extrabold tracking-widest uppercase mb-3">
             <Flame size={14} />
             <span>GRAB A BITE</span>
@@ -126,19 +199,19 @@ export default function SnackCarousel() {
                   }}
                   onClick={() => setActiveIndex(index)}
                   style={{ zIndex }}
-                  className={`absolute w-[210px] sm:w-[250px] h-[300px] sm:h-[370px] rounded-[28px] p-5 shadow-xl flex flex-col justify-between cursor-pointer border transition-colors ${
+                  className={`absolute w-[210px] sm:w-[250px] h-[310px] sm:h-[380px] rounded-[28px] p-5 shadow-xl flex flex-col justify-between cursor-pointer border transition-colors ${
                     isActive
                       ? 'bg-[#E85D04] text-white border-[#E85D04] shadow-2xl'
                       : 'bg-[#F4DDCB] text-[#3D1E12] border-transparent hover:bg-[#EED4C0]'
                   }`}
                 >
                   {/* Top Centered Isolated Image */}
-                  <div className="relative w-full h-[120px] sm:h-[150px] mt-1 flex justify-center items-center">
+                  <div className="relative w-full h-[120px] sm:h-[150px] mt-1 flex justify-center items-center rounded-2xl overflow-hidden shadow-sm">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-contain filter drop-shadow-md transform hover:scale-105 transition-transform duration-300"
+                      className="object-cover transform hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 
@@ -152,7 +225,7 @@ export default function SnackCarousel() {
                       {product.category}
                     </span>
                     <h3
-                      className={`font-display text-lg sm:text-xl uppercase tracking-tight leading-none line-clamp-1 ${
+                      className={`font-display text-base sm:text-lg uppercase tracking-tight leading-none line-clamp-1 ${
                         isActive ? 'text-white' : 'text-[#3D1E12]'
                       }`}
                     >
@@ -161,13 +234,7 @@ export default function SnackCarousel() {
                   </div>
 
                   {/* Nutrition Specs / Price Metadata matching Image 1 */}
-                  <div className="text-[10px] space-y-0.5 px-2 py-1.5 rounded-xl bg-black/5">
-                    <div className="flex justify-between font-semibold">
-                      <span className={isActive ? 'text-white/90' : 'text-[#6D4233]'}>Calories</span>
-                      <span className={isActive ? 'text-white font-bold' : 'text-[#3D1E12] font-bold'}>
-                        {product.calories || '450 kcal'}
-                      </span>
-                    </div>
+                  <div className="text-[10px] space-y-0.5 px-2.5 py-1.5 rounded-xl bg-black/5">
                     <div className="flex justify-between font-semibold">
                       <span className={isActive ? 'text-white/90' : 'text-[#6D4233]'}>Prep Time</span>
                       <span className={isActive ? 'text-white font-bold' : 'text-[#3D1E12] font-bold'}>
@@ -214,6 +281,21 @@ export default function SnackCarousel() {
           >
             <ChevronRight size={22} />
           </button>
+        </div>
+
+        {/* Active Snack Description & Detail Card */}
+        <div className="max-w-xl mx-auto mt-6 bg-[#FAF0E6] rounded-2xl p-4 sm:p-5 border border-[#F4DDCB] shadow-sm text-center">
+          <h4 className="font-display text-lg uppercase text-[#3D1E12] tracking-tight">
+            {activeSnack.name}
+          </h4>
+          <p className="text-gray-600 text-xs sm:text-sm mt-1 font-normal">
+            {activeSnack.description}
+          </p>
+          <div className="mt-3 flex items-center justify-center gap-4 text-xs font-bold text-[#8A4F39]">
+            <span>⏱️ {activeSnack.prepTime}</span>
+            <span>🔥 {activeSnack.calories}</span>
+            <span className="text-[#E85D04] font-extrabold text-sm">₦{activeSnack.price.toLocaleString()}</span>
+          </div>
         </div>
 
         {/* Added Toast Notification */}
