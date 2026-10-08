@@ -95,23 +95,10 @@ export default function Testimonials() {
 
                 {/* Customer details */}
                 <div className="pt-6 flex flex-col items-center">
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 sm:border-4 border-brand-yellow mb-3 shadow-[0_4px_12px_rgba(255,200,50,0.3)]">
-                    <Image
-                      src={current.avatar}
-                      alt={current.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
                   <h4 className="font-display text-lg sm:text-xl uppercase tracking-tight text-brand-yellow">
                     {current.name}
                   </h4>
-                  <p className="text-xs sm:text-sm text-gray-300 font-semibold mb-2">{current.location}</p>
-
-                  <span className="inline-flex items-center space-x-1.5 text-[10px] sm:text-xs font-black bg-brand-green/20 text-brand-green px-3 py-1 rounded-full uppercase border border-brand-green/30">
-                    <CheckCircle size={14} />
-                    <span>{current.tag}</span>
-                  </span>
+                  <p className="text-xs sm:text-sm text-gray-300 font-semibold">{current.location}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
