@@ -134,12 +134,28 @@ body {
 
 /* Hero Section */
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, .99fr) minmax(0, 1.01fr);
   align-items: center;
   gap: clamp(30px, 5.2vw, 78px);
   min-height: min(70vw, 688px);
   padding: 32px 0 28px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/images/hero-doodle-bg.png');
+  background-repeat: repeat;
+  background-size: 340px 340px;
+  opacity: 0.055;
+  filter: invert(1);
+  pointer-events: none;
 }
 
 .eyebrow {

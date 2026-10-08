@@ -12,7 +12,7 @@ export default function HeroSection() {
       <section className="hero" aria-labelledby="hero-title">
         
         {/* Left Hero Copy */}
-        <div className="hero-copy">
+        <div className="hero-copy relative z-10">
           <p className="eyebrow font-[850]">UYO’S #1 FAST-CASUAL SPOT</p>
           
           <h1 id="hero-title">
@@ -38,7 +38,7 @@ export default function HeroSection() {
         </div>
 
         {/* Right Hero Art Promo Graphic - User Uploaded Asset */}
-        <div className="hero-art" aria-label="30 percent off burger, fries and drink promotion">
+        <div className="hero-art relative z-10" aria-label="30 percent off burger, fries and drink promotion">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
