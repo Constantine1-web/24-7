@@ -140,23 +140,22 @@ export const MENU_ITEMS: MenuItem[] = [
     available: true,
   },
   {
-    id: 'afang-soup-special',
-    name: 'Afang Soup Supreme & Pounded Yam',
-    category: 'mains',
-    price: 7500,
-    description: 'Traditional Akwa Ibom Afang soup cooked with stockfish, dry fish, goat meat, periwinkles and served with fresh pounded yam.',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
-    badge: 'UYO ORIGINAL',
-    popular: false,
-    prepTime: '20-25 mins',
-    calories: '850 kcal',
-    available: true,
-    allowedAddons: [
-      { id: 'extra-goat', name: 'Extra Goat Meat (2 pcs)', price: 2500 },
-      { id: 'extra-fish', name: 'Extra Stockfish Portion', price: 2000 },
-      { id: 'extra-swallow', name: 'Extra Pounded Yam', price: 1000 }
-    ]
-  },
+      id: 'classic-milkshakes',
+      name: 'Classic Loaded Milkshakes',
+      category: 'drinks',
+      price: 4500,
+      description: 'Thick, creamy milkshakes topped with generous whipped cream, rainbow sprinkles, and a cherry on top.',
+      image: '/images/milkshakes.jpg',
+      badge: 'SWEET TREAT',
+      popular: true,
+      prepTime: '5-10 mins',
+      calories: '650 kcal',
+      available: true,
+      allowedAddons: [
+        { id: 'extra-whipped', name: 'Extra Whipped Cream', price: 500 },
+        { id: 'chocolate-drizzle', name: 'Chocolate Syrup Drizzle', price: 500 }
+      ]
+    },
   {
     id: 'smoky-jollof-supreme',
     name: 'Smoky Party Jollof & Plantain',
@@ -325,3 +324,4 @@ export const RESTAURANT_INFO = {
   deliveryBaseFee: 1000,
   freeDeliveryThreshold: 15000,
 };
+
