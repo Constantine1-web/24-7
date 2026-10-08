@@ -23,7 +23,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="site-header px-[var(--gutter)] bg-var(--cream) relative z-40 border-b border-[var(--line)]">
+    <header className="site-header px-[var(--gutter)] relative z-40">
       
       {/* Brand Logo & Tagline */}
       <Link className="brand inline-flex items-center gap-3 w-fit" href="/" aria-label="24/7 Flavours home">
