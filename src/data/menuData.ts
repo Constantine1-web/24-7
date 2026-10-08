@@ -180,7 +180,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'mains',
     price: 6500,
     description: 'Wok-tossed spicy rice infused with smoked goat meat chunks (Asun), Scotch bonnet peppers & crispy veggies.',
-    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
+    image: '/images/asun-rice.jpg',
     spicy: true,
     prepTime: '20 mins',
     calories: '810 kcal',
