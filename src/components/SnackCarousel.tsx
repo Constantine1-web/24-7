@@ -96,7 +96,7 @@ export default function SnackCarousel() {
     if (isPaused) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % snacksList.length);
-    }, 2800);
+    }, 1800);
     return () => clearInterval(interval);
   }, [isPaused, snacksList.length]);
 
